@@ -19,8 +19,8 @@ var Hello2Component = (function () {
     Hello2Component = __decorate([
         core_1.Component({
             selector: 'hello2',
-            moduleId: module.id,
-            templateUrl: 'hello2.html',
+            templateUrl: 'app/hello2/hello2.component.html',
+            styleUrls: ['app/hello2/hello2.component.css']
         }), 
         __metadata('design:paramtypes', [])
     ], Hello2Component);
