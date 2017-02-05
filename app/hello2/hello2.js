@@ -9,21 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var app_component_1 = require('./app.component');
-var hello2_component_1 = require('./hello2/hello2.component');
-var AppModule = (function () {
-    function AppModule() {
+var Hello2Component = (function () {
+    function Hello2Component() {
+        this.strings = {
+            first: 'first string',
+            second: 'second string'
+        };
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
-            declarations: [app_component_1.AppComponent, hello2_component_1.Hello2Component],
-            bootstrap: [app_component_1.AppComponent]
+    Hello2Component = __decorate([
+        core_1.Component({
+            selector: 'hello2',
+            moduleId: module.id,
+            templateUrl: 'hello2.html',
         }), 
         __metadata('design:paramtypes', [])
-    ], AppModule);
-    return AppModule;
+    ], Hello2Component);
+    return Hello2Component;
 }());
-exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
+exports.Hello2Component = Hello2Component;
+//# sourceMappingURL=hello2.js.map
