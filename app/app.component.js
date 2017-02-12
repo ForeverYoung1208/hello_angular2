@@ -9,9 +9,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var TodoItem = (function () {
+    function TodoItem() {
+    }
+    return TodoItem;
+}());
+var Todos = (function () {
+    function Todos() {
+    }
+    Todos.prototype.additem = function (newItem) {
+        this.items.push(newItem);
+        return this.items.length;
+    };
+    ;
+    Todos.prototype.removeItemById = function (id) {
+        return this.items.length;
+    };
+    return Todos;
+}());
 var AppComponent = (function () {
     function AppComponent() {
-        this.name = 'Angular';
+        this.name = 'Todo list';
+        this.todolist = new Todos();
     }
     AppComponent = __decorate([
         core_1.Component({

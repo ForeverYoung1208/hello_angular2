@@ -1,3 +1,7 @@
+.component{
+	border-width: 1px;
+	border-style: solid;
+}
 .list {
 	font-weight: bold;
 	font-style: italic;
