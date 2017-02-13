@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TodoItem } from './todoitem/todoitem.component';
+import { TodoItem } from './../todoitem/todoitem.component';
 
 @Component({
 	moduleId: module.id,
@@ -9,10 +9,12 @@ import { TodoItem } from './todoitem/todoitem.component';
 })
 export class TodoBlockComponent {
 	items: TodoItem[];
+
 	additem(newItem: TodoItem):number {
 		this.items.push(newItem);
 		return this.items.length;
 	};
+
 	removeItemById( id: number ):number {
 
 		return this.items.length;
