@@ -9,23 +9,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var TodoItem = (function () {
-    function TodoItem() {
+var TodoBlockComponent = (function () {
+    function TodoBlockComponent() {
     }
-    return TodoItem;
-}());
-var AppComponent = (function () {
-    function AppComponent() {
-        this.name = 'Todo list';
-    }
-    AppComponent = __decorate([
+    TodoBlockComponent.prototype.additem = function (newItem) {
+        this.items.push(newItem);
+        return this.items.length;
+    };
+    ;
+    TodoBlockComponent.prototype.removeItemById = function (id) {
+        return this.items.length;
+    };
+    TodoBlockComponent = __decorate([
         core_1.Component({
-            selector: 'my-app',
-            templateUrl: 'app/main.html',
+            moduleId: module.id,
+            selector: 'todoblock',
+            templateUrl: 'todoblock.component.html',
+            styleUrls: ['todoblock.component.css']
         }), 
         __metadata('design:paramtypes', [])
-    ], AppComponent);
-    return AppComponent;
+    ], TodoBlockComponent);
+    return TodoBlockComponent;
 }());
-exports.AppComponent = AppComponent;
-//# sourceMappingURL=app.component.js.map
+exports.TodoBlockComponent = TodoBlockComponent;
+//# sourceMappingURL=todoblock.component.js.map
