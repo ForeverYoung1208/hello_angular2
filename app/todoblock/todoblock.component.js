@@ -9,16 +9,32 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var todoitem_component_1 = require('./../todoitem/todoitem.component');
 var TodoBlockComponent = (function () {
     function TodoBlockComponent() {
+        this.items = [];
     }
     TodoBlockComponent.prototype.additem = function (newItem) {
         this.items.push(newItem);
         return this.items.length;
     };
     ;
+    TodoBlockComponent.prototype.nextItemId = function () {
+        var nextItemId = 1;
+        if (this.items.length > 0) {
+            nextItemId = Math.max.apply(null, this.items.map(function (a) { return a.id; })) + 1;
+        }
+        ;
+        return nextItemId;
+    };
+    TodoBlockComponent.prototype.addEmptyItem = function (event) {
+        var newItem = new todoitem_component_1.TodoItem(this.nextItemId(), 'write caption here', false, 1);
+        console.log(newItem);
+        console.log(this.additem(newItem));
+    };
     TodoBlockComponent.prototype.removeItemById = function (id) {
-        this.items.findIndex(function (item) { return item.id == id; });
+        var i = this.items.findIndex(function (item) { return item.id == id; });
+        this.items.splice(i, 1);
         return this.items.length;
     };
     TodoBlockComponent = __decorate([

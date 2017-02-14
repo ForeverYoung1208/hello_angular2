@@ -1,2 +1,9 @@
-<todoblock>todoblock</todoblock>
-
+<div class="todoblock">
+	<button (click)="addEmptyItem()">add task</button>
+	<li *ngFor="let item of items">
+		<pre>
+			id:{{item.id}} 	
+			<button (click)="removeItemById(item.id)">delete</button>
+ 		</pre>
+	</li>
+</div>

@@ -17,8 +17,4 @@ export class TodoItem{
 		}
 
 	};
-
-	isDone: boolean;
-	duration: number;
-
 }
