@@ -1,7 +1,8 @@
 "use strict";
 var TodoItem = (function () {
-    function TodoItem(caption, isDone, duration) {
-        this.caption = caption;
+    function TodoItem(id, _caption, isDone, duration) {
+        this.id = id;
+        this._caption = _caption;
         this.isDone = isDone;
         this.duration = duration;
     }

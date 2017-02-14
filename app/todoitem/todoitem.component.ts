@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
-
 export class TodoItem{
-	constructor (caption:string, isDone:boolean, duration:number){
-		this.caption = caption;
-		this.isDone = isDone;
-		this.duration = duration;
+	constructor (
+		public id:number, 
+		private _caption:string, 
+		public isDone:boolean, 
+		public duration:number){
 	}
 
-	private _caption: string;
 	get caption(): string {
 		return this._caption;
 	};

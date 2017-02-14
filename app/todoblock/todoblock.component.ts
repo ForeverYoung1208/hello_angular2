@@ -16,6 +16,7 @@ export class TodoBlockComponent {
 	};
 
 	removeItemById( id: number ):number {
+		this.items.findIndex( item => item.id == id)
 
 		return this.items.length;
 	}

@@ -18,6 +18,7 @@ var TodoBlockComponent = (function () {
     };
     ;
     TodoBlockComponent.prototype.removeItemById = function (id) {
+        this.items.findIndex(function (item) { return item.id == id; });
         return this.items.length;
     };
     TodoBlockComponent = __decorate([
