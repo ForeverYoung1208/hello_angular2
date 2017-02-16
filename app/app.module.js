@@ -14,6 +14,7 @@ var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
 var hello2_component_1 = require('./hello2/hello2.component');
 var todoblock_component_1 = require('./todoblock/todoblock.component');
+var todoitem_component_1 = require('./todoitem/todoitem.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -24,7 +25,8 @@ var AppModule = (function () {
             ],
             declarations: [app_component_1.AppComponent,
                 hello2_component_1.Hello2Component,
-                todoblock_component_1.TodoBlockComponent
+                todoblock_component_1.TodoBlockComponent,
+                todoitem_component_1.TodoItemComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

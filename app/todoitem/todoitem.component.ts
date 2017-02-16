@@ -1,20 +1,12 @@
-export class TodoItem{
-	constructor (
-		public id:number, 
-		private _caption:string, 
-		public isDone:boolean, 
-		public duration:number){
-	}
+import { Component, Input, Output } from '@angular/core';
+import { TodoItem } from './../shared/todoitem';
 
-	get caption(): string {
-		return this._caption;
-	};
-	set caption(newCaption:string) {
-		if (newCaption) {
-			this._caption = newCaption;
-		} else {
-			console.log("Error: caption can't be empty")
-		}
-
-	};
+@Component({
+	moduleId: module.id,
+  selector: 'todoitem',
+  templateUrl: 'todoitem.component.html',
+  styleUrls: ['todoitem.component.css']	
+})
+export class TodoItemComponent{
+	@import todoItem: TodoItem;
 }

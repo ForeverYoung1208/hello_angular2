@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent }  from './app.component';
 import { Hello2Component }  from './hello2/hello2.component';
 import { TodoBlockComponent }  from './todoblock/todoblock.component';
+import { TodoItemComponent }  from './todoitem/todoitem.component';
 
 @NgModule({
   imports:      [ BrowserModule,
@@ -12,7 +13,8 @@ import { TodoBlockComponent }  from './todoblock/todoblock.component';
 								],
   declarations: [ AppComponent, 
   								Hello2Component, 
-  								TodoBlockComponent
+  								TodoBlockComponent,
+  								TodoItemComponent
   							],
   bootstrap:    [ AppComponent ]
 })

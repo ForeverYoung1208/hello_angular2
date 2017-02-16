@@ -9,10 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var todoitem_component_1 = require('./../todoitem/todoitem.component');
+var todoitem_1 = require('./../shared/todoitem');
+var todolistdata_1 = require('./../shared/todolistdata');
 var TodoBlockComponent = (function () {
     function TodoBlockComponent() {
-        this.items = [];
+        this.items = todolistdata_1.todoListData;
     }
     TodoBlockComponent.prototype.additem = function (newItem) {
         this.items.push(newItem);
@@ -28,7 +29,7 @@ var TodoBlockComponent = (function () {
         return nextItemId;
     };
     TodoBlockComponent.prototype.addEmptyItem = function (event) {
-        var newItem = new todoitem_component_1.TodoItem(this.nextItemId(), 'write caption here', false, 1);
+        var newItem = new todoitem_1.TodoItem(this.nextItemId(), 'write caption here', false, 1);
         console.log(newItem);
         console.log(this.additem(newItem));
     };

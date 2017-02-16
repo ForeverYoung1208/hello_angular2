@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  templateUrl: 'app/main.html',
+  templateUrl: 'app/app.html',
 })
 export class AppComponent  { 
 	name = 'Todo list'; 

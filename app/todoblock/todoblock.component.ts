@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { TodoItem } from './../todoitem/todoitem.component';
+import { Component, Input, Output } from '@angular/core';
+import { TodoItem } from './../shared/todoitem';
+import { todoListData } from './../shared/todolistdata';
 
 @Component({
 	moduleId: module.id,
@@ -8,7 +9,8 @@ import { TodoItem } from './../todoitem/todoitem.component';
   styleUrls: ['todoblock.component.css']	
 })
 export class TodoBlockComponent {
-	items: TodoItem[] = [];
+
+	items: Array<TodoItem> = todoListData;
 
 	additem(newItem: TodoItem):number {
 		this.items.push(newItem);

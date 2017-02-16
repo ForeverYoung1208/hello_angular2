@@ -1,14 +1,9 @@
 <div class="todoblock">
 	<button (click)="addEmptyItem()">add task</button>
-	<li *ngFor="let item of items">
-		id:{{item.id}}
-		caption:
-		<textarea 
-			[id]="'textarea-' + item.id"
-			[(ngModel)]="item.caption">
-		</textarea>
-		<input type="checkbox" [(ngModel)]="item.isDone" />
-		<input [(ngModel)]="item.duration" />
+
+	<li *ngFor="let item of items" [item]="item">
+		<todoitem></todoitem>
+
 
 
 		<button (click)="removeItemById(item.id)">delete</button>
