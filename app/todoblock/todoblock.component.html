@@ -1,11 +1,19 @@
 <div class="todoblock">
 	<button (click)="addEmptyItem()">add task</button>
 
-	<li *ngFor="let item of items" [item]="item">
-		<todoitem></todoitem>
-
+	<li *ngFor="let item of items">
+		<todoitem [todoItem]="item"></todoitem>
 
 
 		<button (click)="removeItemById(item.id)">delete</button>
 	</li>
+
+<br/>
+
+	<li *ngFor="let item of items">
+		{{item.caption}}
+
+
+	</li>
+
 </div>

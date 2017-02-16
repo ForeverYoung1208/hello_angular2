@@ -1,6 +1,8 @@
 import { Component, Input, Output } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
 import { todoListData } from './../shared/todolistdata';
+import { TodoListService } from './../shared/todolist.service'
+
 
 @Component({
 	moduleId: module.id,

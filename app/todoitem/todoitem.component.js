@@ -9,14 +9,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var todoitem_1 = require('./../shared/todoitem');
 var TodoItemComponent = (function () {
     function TodoItemComponent() {
-        this.import = todoItem;
     }
     __decorate([
-        , 
-        __metadata('design:type', Object)
-    ], TodoItemComponent.prototype, "import", void 0);
+        core_1.Input(), 
+        __metadata('design:type', todoitem_1.TodoItem)
+    ], TodoItemComponent.prototype, "todoItem", void 0);
     TodoItemComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

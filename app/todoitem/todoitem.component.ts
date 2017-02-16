@@ -8,5 +8,5 @@ import { TodoItem } from './../shared/todoitem';
   styleUrls: ['todoitem.component.css']	
 })
 export class TodoItemComponent{
-	@import todoItem: TodoItem;
+	@Input() todoItem: TodoItem;
 }
