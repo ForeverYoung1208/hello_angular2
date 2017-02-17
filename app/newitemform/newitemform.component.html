@@ -1,10 +1,9 @@
-<form  class="block" (ngSubmit)="submit()">
+<form  class="block" (ngSubmit)="onNewItem()">
 
-
-	<input type="text" name="newCaption" [(ngModel)]="newCaption" required />
-
+	<input type="text" name="newCaption" [(ngModel)]="newItem.caption" required />
 
 	<button type="submit" > Добавить </button>
-	{{ newCaption }}
+
+	{{ newItem.caption }}
 
 </form>

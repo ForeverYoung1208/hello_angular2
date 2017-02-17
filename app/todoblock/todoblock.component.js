@@ -15,7 +15,8 @@ var TodoBlockComponent = (function () {
     function TodoBlockComponent() {
         this.items = todolistdata_1.todoListData;
     }
-    TodoBlockComponent.prototype.additem = function (newItem) {
+    TodoBlockComponent.prototype.addItem = function (newItem) {
+        newItem.id = this.nextItemId();
         this.items.push(newItem);
         return this.items.length;
     };
@@ -31,7 +32,7 @@ var TodoBlockComponent = (function () {
     TodoBlockComponent.prototype.addEmptyItem = function (event) {
         var newItem = new todoitem_1.TodoItem(this.nextItemId(), 'write caption here', false, 1);
         console.log(newItem);
-        console.log(this.additem(newItem));
+        console.log(this.addItem(newItem));
     };
     TodoBlockComponent.prototype.removeItemById = function (id) {
         var i = this.items.findIndex(function (item) { return item.id == id; });

@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
 import { todoListData } from './../shared/todolistdata';
 import { TodoListService } from './../shared/todolist.service'
@@ -14,7 +14,8 @@ export class TodoBlockComponent {
 
 	items: Array<TodoItem> = todoListData;
 
-	additem(newItem: TodoItem):number {
+	addItem(newItem: TodoItem):number {
+		newItem.id = this.nextItemId();
 		this.items.push(newItem);
 		return this.items.length;
 	};
@@ -32,7 +33,7 @@ export class TodoBlockComponent {
 		let newItem = new TodoItem(this.nextItemId() , 'write caption here', false, 1);
 		console.log(newItem);
 		
-		console.log( this.additem(newItem) );
+		console.log( this.addItem(newItem) );
 
 	}
 

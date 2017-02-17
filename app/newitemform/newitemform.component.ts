@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-//import { Form } from '@angular/form';
+import { Component, Output, EventEmitter } from '@angular/core';
+import { TodoItem } from './../shared/todoitem';
 
 @Component({
 	moduleId: module.id,
@@ -8,10 +8,17 @@ import { Component } from '@angular/core';
   styleUrls: ['newitemform.component.css']	
 })
 export class NewItemFormComponent{
-	newCaption:string = 'test';
+	newItem:TodoItem = {
+		id: 0,
+		caption:'testteeeeq',
+		duration:3,
+		isDone:false
+	};
 
-	submit(){
-		alert(this.newCaption)
+	@Output() newItemEvent = new EventEmitter()
+
+	onNewItem(){
+		this.newItemEvent.emit( Object.assign({}, this.newItem ) );
 	}
 
 

@@ -2,6 +2,6 @@
 
 <hello2></hello2>
 
-<newitemform></newitemform>
+<newitemform (newItemEvent)="todoblock.addItem($event)" ></newitemform>
 
-<todoblock></todoblock>
+<todoblock #todoblock ></todoblock>

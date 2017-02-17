@@ -9,14 +9,23 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-//import { Form } from '@angular/form';
 var NewItemFormComponent = (function () {
     function NewItemFormComponent() {
-        this.newCaption = 'test';
+        this.newItem = {
+            id: 0,
+            caption: 'testteeeeq',
+            duration: 3,
+            isDone: false
+        };
+        this.newItemEvent = new core_1.EventEmitter();
     }
-    NewItemFormComponent.prototype.submit = function () {
-        alert(this.newCaption);
+    NewItemFormComponent.prototype.onNewItem = function () {
+        this.newItemEvent.emit(Object.assign({}, this.newItem));
     };
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], NewItemFormComponent.prototype, "newItemEvent", void 0);
     NewItemFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
