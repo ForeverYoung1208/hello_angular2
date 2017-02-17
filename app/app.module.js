@@ -15,6 +15,7 @@ var app_component_1 = require('./app.component');
 var hello2_component_1 = require('./hello2/hello2.component');
 var todoblock_component_1 = require('./todoblock/todoblock.component');
 var todoitem_component_1 = require('./todoitem/todoitem.component');
+var newitemform_component_1 = require('./newitemform/newitemform.component');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26,7 +27,8 @@ var AppModule = (function () {
             declarations: [app_component_1.AppComponent,
                 hello2_component_1.Hello2Component,
                 todoblock_component_1.TodoBlockComponent,
-                todoitem_component_1.TodoItemComponent
+                todoitem_component_1.TodoItemComponent,
+                newitemform_component_1.NewItemFormComponent
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 
