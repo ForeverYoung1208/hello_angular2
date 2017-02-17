@@ -1,10 +1,10 @@
 <div class="todoitem">
-		id:{{id}}
+		id:{{todoItem.id}}
 		caption:
 		<textarea 
-			[id]="'textarea-' + id"
-			[(ngModel)]="caption">
+			[id]="'textarea-' + todoItem.id"
+			[(ngModel)]="todoItem.caption">
 		</textarea>
-		<input type="checkbox" [(ngModel)]="isDone" />
-		<input [(ngModel)]="duration" />
+		<input type="checkbox" [(ngModel)]="todoItem.isDone" />
+		<input [(ngModel)]="todoItem.duration" />
 </div>

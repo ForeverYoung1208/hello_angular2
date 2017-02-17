@@ -10,9 +10,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var todoitem_1 = require('./../shared/todoitem');
+var todolistdata_1 = require('./../shared/todolistdata');
+//import { TodoListService } from './../shared/todolist.service'
 var TodoBlockComponent = (function () {
     function TodoBlockComponent() {
-        this.items = todoListData;
+        this.items = todolistdata_1.todoListData;
     }
     TodoBlockComponent.prototype.additem = function (newItem) {
         this.items.push(newItem);
