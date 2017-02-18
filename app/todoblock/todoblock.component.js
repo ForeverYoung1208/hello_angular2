@@ -11,10 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var todoitem_1 = require('./../shared/todoitem');
 var todolistdata_1 = require('./../shared/todolistdata');
+var todolist_service_1 = require('./../shared/todolist.service');
 var TodoBlockComponent = (function () {
-    function TodoBlockComponent() {
+    function TodoBlockComponent(listItemsService) {
+        this.listItemsService = listItemsService;
         this.items = todolistdata_1.todoListData;
+        this.items = [];
     }
+    TodoBlockComponent.prototype.ngOnInit = function () {
+        this.items = this.listItemsService.getListData();
+    };
     TodoBlockComponent.prototype.addItem = function (newItem) {
         newItem.id = this.nextItemId();
         this.items.push(newItem);
@@ -46,7 +52,7 @@ var TodoBlockComponent = (function () {
             templateUrl: 'todoblock.component.html',
             styleUrls: ['todoblock.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [todolist_service_1.TodoListService])
     ], TodoBlockComponent);
     return TodoBlockComponent;
 }());

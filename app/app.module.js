@@ -16,6 +16,7 @@ var hello2_component_1 = require('./hello2/hello2.component');
 var todoblock_component_1 = require('./todoblock/todoblock.component');
 var todoitem_component_1 = require('./todoitem/todoitem.component');
 var newitemform_component_1 = require('./newitemform/newitemform.component');
+var todolist_service_1 = require('./shared/todolist.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -30,6 +31,7 @@ var AppModule = (function () {
                 todoitem_component_1.TodoItemComponent,
                 newitemform_component_1.NewItemFormComponent
             ],
+            providers: [todolist_service_1.TodoListService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

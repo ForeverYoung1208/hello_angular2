@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
 import { todoListData } from './../shared/todolistdata';
 import { TodoListService } from './../shared/todolist.service'
@@ -10,7 +10,15 @@ import { TodoListService } from './../shared/todolist.service'
   templateUrl: 'todoblock.component.html',
   styleUrls: ['todoblock.component.css']	
 })
-export class TodoBlockComponent {
+export class TodoBlockComponent implements OnInit{
+
+	constructor( private listItemsService: TodoListService) {
+		this.items = [];
+	}
+
+	ngOnInit(){
+		this.items = this.listItemsService.getListData();
+	}
 
 	items: Array<TodoItem> = todoListData;
 
