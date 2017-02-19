@@ -12,11 +12,19 @@ var core_1 = require('@angular/core');
 var todoitem_1 = require('./../shared/todoitem');
 var TodoItemComponent = (function () {
     function TodoItemComponent() {
+        this.deleteItemEvent = new core_1.EventEmitter();
     }
+    TodoItemComponent.prototype.onDelete = function () {
+        this.deleteItemEvent.emit(this.todoItem);
+    };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', todoitem_1.TodoItem)
     ], TodoItemComponent.prototype, "todoItem", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TodoItemComponent.prototype, "deleteItemEvent", void 0);
     TodoItemComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

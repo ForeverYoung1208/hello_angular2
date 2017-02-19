@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
-import { todoListData } from './../shared/todolistdata';
 import { TodoListService } from './../shared/todolist.service'
 
 
@@ -12,6 +11,8 @@ import { TodoListService } from './../shared/todolist.service'
 })
 export class TodoBlockComponent implements OnInit{
 
+	items: Array<TodoItem>;
+
 	constructor( private listItemsService: TodoListService) {
 		this.items = [];
 	}
@@ -20,35 +21,47 @@ export class TodoBlockComponent implements OnInit{
 		this.items = this.listItemsService.getListData();
 	}
 
-	items: Array<TodoItem> = todoListData;
-
-	addItem(newItem: TodoItem):number {
-		newItem.id = this.nextItemId();
-		this.items.push(newItem);
-		return this.items.length;
+	addItem(newItem: TodoItem){
+		this.listItemsService.addItem( newItem )
 	};
 
-	nextItemId():number {
-		let nextItemId:number = 1
-		if (this.items.length>0) {
-			nextItemId = Math.max.apply( null, this.items.map( a => a.id ) ) + 1
-		};
-		return nextItemId;
+	addEmptyItem(){
+		let newItem = new TodoItem( 0, 'write caption here', false, 1);
+		this.listItemsService.addItem( newItem )
+	}
+
+	removeItem( item: TodoItem ){
+		this.listItemsService.removeItemById(item.id);
+		console.log ('delete: ' + item)
 	}
 
 
-	addEmptyItem( event:any ){
-		let newItem = new TodoItem(this.nextItemId() , 'write caption here', false, 1);
-		console.log(newItem);
+	// addItem(newItem: TodoItem):number {
+	// 	newItem.id = this.nextItemId();
+	// 	this.items.push(newItem);
+	// 	return this.items.length;
+	// };
+
+	// nextItemId():number {
+	// 	let nextItemId:number = 1
+	// 	if (this.items.length>0) {
+	// 		nextItemId = Math.max.apply( null, this.items.map( a => a.id ) ) + 1
+	// 	};
+	// 	return nextItemId;
+	// }
+
+
+	// addEmptyItem( event:any ){
+	// 	let newItem = new TodoItem(this.nextItemId() , 'write caption here', false, 1);
+	// 	console.log(newItem);
 		
-		console.log( this.addItem(newItem) );
+	// 	console.log( this.addItem(newItem) );
 
-	}
+	// }
 
-	removeItemById( id: number ):number {
-		let i:number = this.items.findIndex( item => item.id == id)
-		this.items.splice(i, 1);
-
-		return this.items.length;
-	}
+	// removeItemById( id: number ):number {
+	// 	let i:number = this.items.findIndex( item => item.id == id)
+	// 	this.items.splice(i, 1);
+	// 	return this.items.length;
+	// }
 }

@@ -4,10 +4,10 @@
 	<li *ngFor="let item of items">
 
 
-		<todoitem [todoItem]="item"></todoitem>
+		<todoitem [todoItem]="item" (deleteItemEvent)="removeItem($event) "></todoitem>
 
 
-		<button (click)="removeItemById(item.id)">delete</button>
+		<button (click)="removeItem(item)">delete (block)</button>
 	</li>
 
 <br/>
@@ -15,6 +15,7 @@
 	<li *ngFor="let item of items">
 		{{item.caption}}
 		{{item.duration}}
+		{{item.isDone}}
 
 	</li>
 

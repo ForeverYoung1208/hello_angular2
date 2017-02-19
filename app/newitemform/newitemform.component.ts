@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
+import { TodoListService } from './../shared/todolist.service'
+
 
 @Component({
 	moduleId: module.id,
@@ -20,6 +22,12 @@ export class NewItemFormComponent{
 	onNewItem(){
 		this.newItemEvent.emit( Object.assign({}, this.newItem ) );
 	}
+
+	
+	onAddItem(){
+		let a = new TodoListService()
+		a.addItem( Object.assign({}, this.newItem) )
+	};
 
 
 }

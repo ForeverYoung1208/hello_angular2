@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
 
 @Component({
@@ -9,4 +9,12 @@ import { TodoItem } from './../shared/todoitem';
 })
 export class TodoItemComponent{
 	@Input() todoItem: TodoItem;
+
+	@Output() deleteItemEvent = new EventEmitter()
+
+	onDelete() {
+		this.deleteItemEvent.emit(this.todoItem)
+	}
+
+
 }

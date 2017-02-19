@@ -10,40 +10,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var todoitem_1 = require('./../shared/todoitem');
-var todolistdata_1 = require('./../shared/todolistdata');
 var todolist_service_1 = require('./../shared/todolist.service');
 var TodoBlockComponent = (function () {
     function TodoBlockComponent(listItemsService) {
         this.listItemsService = listItemsService;
-        this.items = todolistdata_1.todoListData;
         this.items = [];
     }
     TodoBlockComponent.prototype.ngOnInit = function () {
         this.items = this.listItemsService.getListData();
     };
     TodoBlockComponent.prototype.addItem = function (newItem) {
-        newItem.id = this.nextItemId();
-        this.items.push(newItem);
-        return this.items.length;
+        this.listItemsService.addItem(newItem);
     };
     ;
-    TodoBlockComponent.prototype.nextItemId = function () {
-        var nextItemId = 1;
-        if (this.items.length > 0) {
-            nextItemId = Math.max.apply(null, this.items.map(function (a) { return a.id; })) + 1;
-        }
-        ;
-        return nextItemId;
+    TodoBlockComponent.prototype.addEmptyItem = function () {
+        var newItem = new todoitem_1.TodoItem(0, 'write caption here', false, 1);
+        this.listItemsService.addItem(newItem);
     };
-    TodoBlockComponent.prototype.addEmptyItem = function (event) {
-        var newItem = new todoitem_1.TodoItem(this.nextItemId(), 'write caption here', false, 1);
-        console.log(newItem);
-        console.log(this.addItem(newItem));
-    };
-    TodoBlockComponent.prototype.removeItemById = function (id) {
-        var i = this.items.findIndex(function (item) { return item.id == id; });
-        this.items.splice(i, 1);
-        return this.items.length;
+    TodoBlockComponent.prototype.removeItem = function (item) {
+        this.listItemsService.removeItemById(item.id);
+        console.log('delete: ' + item);
     };
     TodoBlockComponent = __decorate([
         core_1.Component({
