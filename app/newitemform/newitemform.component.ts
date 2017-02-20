@@ -10,12 +10,14 @@ import { TodoListService } from './../shared/todolist.service'
   styleUrls: ['newitemform.component.css']	
 })
 export class NewItemFormComponent{
-	newItem:TodoItem = {
-		id: 0,
-		caption:'testteeeeq',
-		duration:3,
-		isDone:false
-	};
+	newItem:TodoItem = 	{
+												id: 0,
+												caption:'testteeeeq',
+												duration:3,
+												isDone:false
+											};;
+
+	constructor( private todoListService:TodoListService ){	}
 
 	@Output() newItemEvent = new EventEmitter()
 
@@ -25,8 +27,7 @@ export class NewItemFormComponent{
 
 	
 	onAddItem(){
-		let a = new TodoListService()
-		a.addItem( Object.assign({}, this.newItem) )
+		this.todoListService.addItem( Object.assign({}, this.newItem) )
 	};
 
 

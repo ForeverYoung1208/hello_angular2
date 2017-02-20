@@ -1,7 +1,7 @@
 import { todoListData } from './todolistdata'
 import { TodoItem } from './todoitem'
 
-
+@Injectable();
 export class TodoListService {
 	items: TodoItem[] = todoListData;
 

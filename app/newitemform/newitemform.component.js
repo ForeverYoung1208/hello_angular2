@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var todolist_service_1 = require('./../shared/todolist.service');
 var NewItemFormComponent = (function () {
-    function NewItemFormComponent() {
+    function NewItemFormComponent(todoListService) {
+        this.todoListService = todoListService;
         this.newItem = {
             id: 0,
             caption: 'testteeeeq',
@@ -20,12 +21,12 @@ var NewItemFormComponent = (function () {
         };
         this.newItemEvent = new core_1.EventEmitter();
     }
+    ;
     NewItemFormComponent.prototype.onNewItem = function () {
         this.newItemEvent.emit(Object.assign({}, this.newItem));
     };
     NewItemFormComponent.prototype.onAddItem = function () {
-        var a = new todolist_service_1.TodoListService();
-        a.addItem(Object.assign({}, this.newItem));
+        this.todoListService.addItem(Object.assign({}, this.newItem));
     };
     ;
     __decorate([
@@ -39,7 +40,7 @@ var NewItemFormComponent = (function () {
             templateUrl: 'newitemform.component.html',
             styleUrls: ['newitemform.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [todolist_service_1.TodoListService])
     ], NewItemFormComponent);
     return NewItemFormComponent;
 }());

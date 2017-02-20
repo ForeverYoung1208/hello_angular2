@@ -1,6 +1,7 @@
 "use strict";
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
+;
 var TodoListService = (function () {
     function TodoListService() {
         this.items = todolistdata_1.todoListData;
