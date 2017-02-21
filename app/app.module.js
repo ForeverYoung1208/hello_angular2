@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var app_component_1 = require('./app.component');
+var todomenu_component_1 = require('./todomenu/todomenu.component');
 var hello2_component_1 = require('./hello2/hello2.component');
 var todoblock_component_1 = require('./todoblock/todoblock.component');
 var todoitem_component_1 = require('./todoitem/todoitem.component');
@@ -26,6 +27,7 @@ var AppModule = (function () {
                 forms_1.FormsModule
             ],
             declarations: [app_component_1.AppComponent,
+                todomenu_component_1.TodoMenuComponent,
                 hello2_component_1.Hello2Component,
                 todoblock_component_1.TodoBlockComponent,
                 todoitem_component_1.TodoItemComponent,
