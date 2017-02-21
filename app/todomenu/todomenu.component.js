@@ -10,17 +10,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var MenuItem = (function () {
-    function MenuItem(id, name, goFunction) {
+    function MenuItem(id, name, onClick) {
         this.id = id;
         this.name = name;
-        this.goFunction = goFunction;
+        this.onClick = onClick;
     }
     return MenuItem;
 }());
 var TodoMenuComponent = (function () {
     function TodoMenuComponent() {
-        this.menu.push(new MenuItem(1, ' Todo только фронтенд ', function () { alert('id'); }));
-        this.menu.push(new MenuItem(2, ' Todo с бэкэндом ', function () { alert('2'); }));
+        this.menu = [];
+        this.menu.push(new MenuItem(1, ' Todo только фронтенд ', function (m) { alert(m.name); }));
+        this.menu.push(new MenuItem(2, ' Todo с бэкэндом ', function (m) { alert(m.name); }));
     }
     TodoMenuComponent = __decorate([
         core_1.Component({

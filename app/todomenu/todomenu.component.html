@@ -1,4 +1,4 @@
 <nav class = "todomenu" > 
 
-	<a (click)="onMenuClick(menuItem.id)" *ngFor = " let menuItem of menu " >{{menuItem.name}}</a>
+	<a (click)="menuItem.onClick(menuItem)" *ngFor = " let menuItem of menu " >{{menuItem.name}}</a>
 </nav>
