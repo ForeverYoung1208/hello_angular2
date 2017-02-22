@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
+var router_1 = require('@angular/router');
 var app_component_1 = require('./app.component');
 var todomenu_component_1 = require('./todomenu/todomenu.component');
 var hello2_component_1 = require('./hello2/hello2.component');
@@ -24,7 +25,12 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [platform_browser_1.BrowserModule,
-                forms_1.FormsModule
+                forms_1.FormsModule,
+                router_1.RouterModule.forRoot([
+                    { path: "todo-frontend", component: todoblock_component_1.TodoBlockComponent },
+                    { path: "todo-backend", component: todoblock_component_1.TodoBlockComponent },
+                    { path: "", component: hello2_component_1.Hello2Component }
+                ])
             ],
             declarations: [app_component_1.AppComponent,
                 todomenu_component_1.TodoMenuComponent,
@@ -33,7 +39,7 @@ var AppModule = (function () {
                 todoitem_component_1.TodoItemComponent,
                 newitemform_component_1.NewItemFormComponent
             ],
-            providers: [todolist_service_1.TodoListService],
+            providers: [todolist_service_1.TodoListLocalService],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

@@ -2,8 +2,19 @@ import { Injectable } from '@angular/core'
 import { todoListData } from './todolistdata'
 import { TodoItem } from './todoitem'
 
+
+export interface TodoListServce{
+	items:Array<TodoItem>;
+	getListData( )		:Array<TodoItem>;
+	addItem( newItem	:TodoItem ):any;
+	nextItemId( )			:number;
+	addEmptyItem( )		:any;
+	removeItemById(id:number ):any;
+}
+
+
 @Injectable()
-export class TodoListService {
+export class TodoListLocalService implements TodoListServce {
 	items: TodoItem[] = todoListData;
 
 	getListData(): TodoItem[] {

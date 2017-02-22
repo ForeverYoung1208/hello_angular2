@@ -40,9 +40,10 @@ var NewItemFormComponent = (function () {
             templateUrl: 'newitemform.component.html',
             styleUrls: ['newitemform.component.css']
         }), 
-        __metadata('design:paramtypes', [todolist_service_1.TodoListService])
+        __metadata('design:paramtypes', [(typeof (_a = typeof todolist_service_1.TodoListService !== 'undefined' && todolist_service_1.TodoListService) === 'function' && _a) || Object])
     ], NewItemFormComponent);
     return NewItemFormComponent;
+    var _a;
 }());
 exports.NewItemFormComponent = NewItemFormComponent;
 //# sourceMappingURL=newitemform.component.js.map

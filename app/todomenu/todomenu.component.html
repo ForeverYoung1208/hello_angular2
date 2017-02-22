@@ -1,4 +1,11 @@
 <nav class = "todomenu" > 
 
 	<a (click)="menuItem.onClick(menuItem)" *ngFor = " let menuItem of menu " >{{menuItem.name}}</a>
+
+	<hr/>
+
+	<li routerLink = "/todo-frontend" routerLinkActive = "active"> todo-frontend </li>
+
+	<li routerLink = "/todo-backend" routerLinkActive = "active"> todo-backend </li>
+
 </nav>

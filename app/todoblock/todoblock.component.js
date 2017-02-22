@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var todoitem_1 = require('./../shared/todoitem');
-var todolist_service_1 = require('./../shared/todolist.service');
 var TodoBlockComponent = (function () {
     function TodoBlockComponent(listItemsService) {
         this.listItemsService = listItemsService;
@@ -38,7 +37,7 @@ var TodoBlockComponent = (function () {
             templateUrl: 'todoblock.component.html',
             styleUrls: ['todoblock.component.css']
         }), 
-        __metadata('design:paramtypes', [todolist_service_1.TodoListService])
+        __metadata('design:paramtypes', [Object])
     ], TodoBlockComponent);
     return TodoBlockComponent;
 }());
