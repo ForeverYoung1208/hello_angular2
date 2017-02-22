@@ -11,14 +11,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
-// export interface TodoListService{
-// 	items:Array<TodoItem>;
-// 	getListData( )		:Array<TodoItem>;
-// 	addItem( newItem	:TodoItem ):any;
-// 	nextItemId( )			:number;
-// 	addEmptyItem( )		:any;
-// 	removeItemById(id:number ):any;
-// }
 var TodoListLocalService = (function () {
     function TodoListLocalService() {
         this.items = todolistdata_1.todoListData;
@@ -54,4 +46,39 @@ var TodoListLocalService = (function () {
     return TodoListLocalService;
 }());
 exports.TodoListLocalService = TodoListLocalService;
+var TodoListRemoteService = (function () {
+    function TodoListRemoteService() {
+        this.items = todolistdata_1.todoListData;
+    }
+    TodoListRemoteService.prototype.getListData = function () {
+        return this.items;
+    };
+    TodoListRemoteService.prototype.addItem = function (newItem) {
+        newItem.id = this.nextItemId();
+        this.items.push(newItem);
+    };
+    ;
+    TodoListRemoteService.prototype.nextItemId = function () {
+        var nextItemId = 1;
+        if (this.items.length > 0) {
+            nextItemId = Math.max.apply(null, this.items.map(function (a) { return a.id; })) + 1;
+        }
+        ;
+        return nextItemId;
+    };
+    TodoListRemoteService.prototype.addEmptyItem = function () {
+        var newItem = new todoitem_1.TodoItem(this.nextItemId(), 'write caption here', false, 1);
+        console.log('new item in service: ' + newItem);
+    };
+    TodoListRemoteService.prototype.removeItemById = function (id) {
+        var i = this.items.findIndex(function (item) { return item.id == id; });
+        this.items.splice(i, 1);
+    };
+    TodoListRemoteService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], TodoListRemoteService);
+    return TodoListRemoteService;
+}());
+exports.TodoListRemoteService = TodoListRemoteService;
 //# sourceMappingURL=todolist.service.js.map

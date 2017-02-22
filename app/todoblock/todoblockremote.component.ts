@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TodoItem } from './../shared/todoitem';
 import { TodoBlockComponent } from './todoblock.component';
+import { TodoListService, TodoListLocalService, TodoListRemoteService } from './../shared/todolist.service'
 
 
 @Component({
@@ -8,9 +10,11 @@ import { TodoBlockComponent } from './todoblock.component';
   templateUrl: 'todoblock.component.html',
   styleUrls: ['todoblock.component.css']	
 })
+
 export class TodoBlockRemoteComponent extends TodoBlockComponent implements OnInit{
-	constructor() {
-		super()
+	constructor( public listItemsService: TodoListRemoteService) {
+		super( listItemsService )
+		this.items = [];
 	}
 
 	ngOnInit(){

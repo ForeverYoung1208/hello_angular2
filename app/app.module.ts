@@ -8,9 +8,10 @@ import { AppComponent }  from './app.component';
 import { TodoMenuComponent }  from './todomenu/todomenu.component';
 import { Hello2Component }  from './hello2/hello2.component';
 import { TodoBlockComponent }  from './todoblock/todoblock.component';
+import { TodoBlockRemoteComponent }  from './todoblock/todoblockremote.component';
 import { TodoItemComponent }  from './todoitem/todoitem.component';
 import { NewItemFormComponent }  from './newitemform/newitemform.component';
-import { TodoListService, TodoListLocalService } from './shared/todolist.service'
+import { TodoListService, TodoListLocalService, TodoListRemoteService } from './shared/todolist.service'
 
 
 
@@ -19,7 +20,7 @@ import { TodoListService, TodoListLocalService } from './shared/todolist.service
 								  FormsModule,
                   RouterModule.forRoot([  
                     {path: "todo-frontend", component: TodoBlockComponent},
-                    {path: "todo-backend", component: TodoBlockComponent},
+                    {path: "todo-backend", component: TodoBlockRemoteComponent},
                     {path: "", component: Hello2Component }
                   ])
 								],
@@ -30,7 +31,7 @@ import { TodoListService, TodoListLocalService } from './shared/todolist.service
   								TodoItemComponent,
   								NewItemFormComponent
   							],
-  providers: [ TodoListLocalService ],
+  providers: [ TodoListLocalService, TodoListRemoteService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

@@ -13,7 +13,7 @@ export class TodoBlockComponent implements OnInit{
 
 	items: Array<TodoItem>;
 
-	constructor( private listItemsService: TodoListService) {
+	constructor( public listItemsService: TodoListLocalService) {
 		this.items = [];
 	}
 
