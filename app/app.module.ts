@@ -10,7 +10,7 @@ import { Hello2Component }  from './hello2/hello2.component';
 import { TodoBlockComponent }  from './todoblock/todoblock.component';
 import { TodoItemComponent }  from './todoitem/todoitem.component';
 import { NewItemFormComponent }  from './newitemform/newitemform.component';
-import { TodoListLocalService } from './shared/todolist.service'
+import { TodoListService, TodoListLocalService } from './shared/todolist.service'
 
 
 

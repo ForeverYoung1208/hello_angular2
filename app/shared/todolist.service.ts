@@ -3,7 +3,7 @@ import { todoListData } from './todolistdata'
 import { TodoItem } from './todoitem'
 
 
-export interface TodoListServce{
+export interface TodoListService{
 	items:Array<TodoItem>;
 	getListData( )		:Array<TodoItem>;
 	addItem( newItem	:TodoItem ):any;
@@ -12,21 +12,16 @@ export interface TodoListServce{
 	removeItemById(id:number ):any;
 }
 
-
 @Injectable()
-export class TodoListLocalService implements TodoListServce {
+export class TodoListLocalService implements TodoListService {
 	items: TodoItem[] = todoListData;
-
 	getListData(): TodoItem[] {
 		return this.items;
 	}
-
-
 	addItem(newItem: TodoItem) {
 		newItem.id = this.nextItemId();
 		this.items.push(newItem);
 	};
-
 	nextItemId():number {
 		let nextItemId:number = 1
 		if (this.items.length>0) {
@@ -34,21 +29,12 @@ export class TodoListLocalService implements TodoListServce {
 		};
 		return nextItemId;
 	}
-
-
 	addEmptyItem(){
 		let newItem = new TodoItem(this.nextItemId() , 'write caption here', false, 1);
-
 		console.log( 'new item in service: ' + newItem);
-		
 	}
-
 	removeItemById( id: number ){
 		let i:number = this.items.findIndex( item => item.id == id)
 		this.items.splice(i, 1);
 	}
-
-
-
-
 }

@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var todoitem_1 = require('./../shared/todoitem');
+var todolist_service_1 = require('./../shared/todolist.service');
 var TodoBlockComponent = (function () {
     function TodoBlockComponent(listItemsService) {
         this.listItemsService = listItemsService;
@@ -37,9 +38,10 @@ var TodoBlockComponent = (function () {
             templateUrl: 'todoblock.component.html',
             styleUrls: ['todoblock.component.css']
         }), 
-        __metadata('design:paramtypes', [Object])
+        __metadata('design:paramtypes', [(typeof (_a = typeof todolist_service_1.TodoListService !== 'undefined' && todolist_service_1.TodoListService) === 'function' && _a) || Object])
     ], TodoBlockComponent);
     return TodoBlockComponent;
+    var _a;
 }());
 exports.TodoBlockComponent = TodoBlockComponent;
 //# sourceMappingURL=todoblock.component.js.map

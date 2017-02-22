@@ -11,6 +11,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
+// export interface TodoListService{
+// 	items:Array<TodoItem>;
+// 	getListData( )		:Array<TodoItem>;
+// 	addItem( newItem	:TodoItem ):any;
+// 	nextItemId( )			:number;
+// 	addEmptyItem( )		:any;
+// 	removeItemById(id:number ):any;
+// }
 var TodoListLocalService = (function () {
     function TodoListLocalService() {
         this.items = todolistdata_1.todoListData;

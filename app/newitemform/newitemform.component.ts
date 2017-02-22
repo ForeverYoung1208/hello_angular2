@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
-import { TodoListService } from './../shared/todolist.service'
+import { TodoListService, TodoListLocalService } from './../shared/todolist.service'
 
 
 @Component({

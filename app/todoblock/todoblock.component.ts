@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
-import { TodoListLocalService } from './../shared/todolist.service'
+import { TodoListService, TodoListLocalService } from './../shared/todolist.service'
 
 
 @Component({
