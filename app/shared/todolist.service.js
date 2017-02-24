@@ -9,7 +9,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
 var TodoListLocalService = (function () {
@@ -52,11 +51,11 @@ var TodoListLocalService = (function () {
 }());
 exports.TodoListLocalService = TodoListLocalService;
 var TodoListRemoteService = (function () {
-    function TodoListRemoteService(http) {
-        this.http = http;
-        this.items = todolistdata_1.todoListData;
+    function TodoListRemoteService() {
+        this.items = todolistdata_1.todoListData2;
     }
-    ;
+    // constructor( public http:Http ){
+    // };
     TodoListRemoteService.prototype.getListData = function () {
         return this.items;
     };
@@ -87,7 +86,7 @@ var TodoListRemoteService = (function () {
     };
     TodoListRemoteService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [])
     ], TodoListRemoteService);
     return TodoListRemoteService;
 }());

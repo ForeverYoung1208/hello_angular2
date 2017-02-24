@@ -24,3 +24,30 @@ export const todoListData = [
 		duration: 4
 	}
 ]
+
+export const todoListData2 = [
+	{
+		id:11,
+		caption:'111first todo',
+		isDone: false,
+		duration: 222
+	},
+	{
+		id:12,
+		caption:'222second todo',
+		isDone: false,
+		duration: 222
+	},
+	{
+		id:14,
+		caption:'333thrid todo',
+		isDone: false,
+		duration: 422
+	},
+	{
+		id:15,
+		caption:'444fours todo',
+		isDone: false,
+		duration: 422
+	}
+]

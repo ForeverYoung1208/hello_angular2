@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { todoListData } from './todolistdata';
+import { todoListData, todoListData2 } from './todolistdata';
 import { TodoItem } from './todoitem';
 
 
@@ -50,10 +50,10 @@ export class TodoListLocalService implements TodoListService {
 
 @Injectable()
 export class TodoListRemoteService implements TodoListService {
-	items: TodoItem[] = todoListData;
-	constructor( public http:Http ){
+	items: TodoItem[] = todoListData2;
+	// constructor( public http:Http ){
 
-	};
+	// };
 	getListData(): TodoItem[] {
 		return this.items;
 	}

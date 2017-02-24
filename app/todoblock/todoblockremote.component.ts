@@ -12,8 +12,9 @@ import { TodoListService, TodoListLocalService, TodoListRemoteService } from './
 })
 
 export class TodoBlockRemoteComponent extends TodoBlockComponent implements OnInit{
+	items: Array<TodoItem>;
 	constructor( public listItemsService: TodoListRemoteService) {
-		super( listItemsService )
+	 	super( listItemsService )
 
 	}
 
