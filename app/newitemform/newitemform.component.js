@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var todolist_service_1 = require('./../shared/todolist.service');
 var NewItemFormComponent = (function () {
     function NewItemFormComponent(todoListService) {
         this.todoListService = todoListService;
@@ -39,7 +40,7 @@ var NewItemFormComponent = (function () {
             templateUrl: 'newitemform.component.html',
             styleUrls: ['newitemform.component.css']
         }), 
-        __metadata('design:paramtypes', [Object])
+        __metadata('design:paramtypes', [todolist_service_1.TodoListLocalService])
     ], NewItemFormComponent);
     return NewItemFormComponent;
 }());

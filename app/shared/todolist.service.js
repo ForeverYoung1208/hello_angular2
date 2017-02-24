@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var http_1 = require('@angular/http');
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
 var TodoListLocalService = (function () {
@@ -39,6 +40,10 @@ var TodoListLocalService = (function () {
         var i = this.items.findIndex(function (item) { return item.id == id; });
         this.items.splice(i, 1);
     };
+    TodoListLocalService.prototype.getItemById = function (id) {
+        var t = this.items.find(function (item) { return item.id == id; });
+        return t;
+    };
     TodoListLocalService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
@@ -47,9 +52,11 @@ var TodoListLocalService = (function () {
 }());
 exports.TodoListLocalService = TodoListLocalService;
 var TodoListRemoteService = (function () {
-    function TodoListRemoteService() {
+    function TodoListRemoteService(http) {
+        this.http = http;
         this.items = todolistdata_1.todoListData;
     }
+    ;
     TodoListRemoteService.prototype.getListData = function () {
         return this.items;
     };
@@ -74,9 +81,13 @@ var TodoListRemoteService = (function () {
         var i = this.items.findIndex(function (item) { return item.id == id; });
         this.items.splice(i, 1);
     };
+    TodoListRemoteService.prototype.getItemById = function (id) {
+        var t = this.items.find(function (item) { return item.id == id; });
+        return t;
+    };
     TodoListRemoteService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], TodoListRemoteService);
     return TodoListRemoteService;
 }());

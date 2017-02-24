@@ -1,15 +1,18 @@
-import { Injectable } from '@angular/core'
-import { todoListData } from './todolistdata'
-import { TodoItem } from './todoitem'
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
+import { todoListData } from './todolistdata';
+import { TodoItem } from './todoitem';
+
 
 
 export interface TodoListService{
 	items:Array<TodoItem>;
 	getListData( )		:Array<TodoItem>;
 	addItem( newItem	:TodoItem ):any;
+	getItemById( id:number ): TodoItem;
 	nextItemId( )			:number;
 	addEmptyItem( )		:any;
-	removeItemById(id:number ):any;
+	removeItemById( id:number ):any;
 }
 
 @Injectable()
@@ -37,11 +40,20 @@ export class TodoListLocalService implements TodoListService {
 		let i:number = this.items.findIndex( item => item.id == id)
 		this.items.splice(i, 1);
 	}
+	getItemById( id:number ): TodoItem {
+		let t: TodoItem = this.items.find( item => item.id == id) 
+		return t
+	}
 }
+
+
 
 @Injectable()
 export class TodoListRemoteService implements TodoListService {
 	items: TodoItem[] = todoListData;
+	constructor( public http:Http ){
+
+	};
 	getListData(): TodoItem[] {
 		return this.items;
 	}
@@ -64,4 +76,8 @@ export class TodoListRemoteService implements TodoListService {
 		let i:number = this.items.findIndex( item => item.id == id)
 		this.items.splice(i, 1);
 	}
+	getItemById( id:number ): TodoItem {
+		let t: TodoItem = this.items.find( item => item.id == id) 
+		return t
+	}	
 }

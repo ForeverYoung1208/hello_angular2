@@ -17,7 +17,7 @@ export class NewItemFormComponent{
 												isDone:false
 											};;
 
-	constructor( private todoListService:TodoListService ){	}
+	constructor( private todoListService:TodoListLocalService ){	}
 
 	@Output() newItemEvent = new EventEmitter()
 
