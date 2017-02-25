@@ -2,7 +2,7 @@ import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { HttpModule} from '@angular/http'
+import { HttpModule } from '@angular/http'
 
 
 import { AppComponent }  from './app.component';
@@ -24,9 +24,8 @@ import { TodoListService, TodoListLocalService, TodoListRemoteService } from './
                     {path: "todo-frontend", component: TodoBlockComponent},
                     {path: "todo-backend", component: TodoBlockRemoteComponent},
                     {path: "", component: Hello2Component }
-                  ],
+                  ]),
                   HttpModule
-                  )
 								],
   declarations: [ AppComponent, 
                   TodoMenuComponent,

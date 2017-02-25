@@ -32,7 +32,8 @@ var AppModule = (function () {
                     { path: "todo-frontend", component: todoblock_component_1.TodoBlockComponent },
                     { path: "todo-backend", component: todoblockremote_component_1.TodoBlockRemoteComponent },
                     { path: "", component: hello2_component_1.Hello2Component }
-                ], http_1.HttpModule)
+                ]),
+                http_1.HttpModule
             ],
             declarations: [app_component_1.AppComponent,
                 todomenu_component_1.TodoMenuComponent,
