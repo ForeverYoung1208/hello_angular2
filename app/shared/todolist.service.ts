@@ -55,15 +55,17 @@ export class TodoListRemoteService implements TodoListService {
 
 	constructor( public http:Http ){ };
 
-	updateListData(){
+	updateListData( updateFunction:Function = null){
 		this.http.get(this.apiUrl+'/todos').subscribe(
-			result => this.items = result.json(),
+			result => { 
+									this.items = result.json()
+									if ( updateFunction ) { updateFunction() };
+								},
 			error => console.log( error.statusText )
 		)
 	}
 
 	getListData(): TodoItem[] {
-		this.updateListData()
 		return this.items;
 	}
 

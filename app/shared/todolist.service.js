@@ -58,12 +58,18 @@ var TodoListRemoteService = (function () {
         this.apiUrl = 'http://192.168.0.128:3000';
     }
     ;
-    TodoListRemoteService.prototype.updateListData = function () {
+    TodoListRemoteService.prototype.updateListData = function (updateFunction) {
         var _this = this;
-        this.http.get(this.apiUrl + '/todos').subscribe(function (result) { return _this.items = result.json(); }, function (error) { return console.log(error.statusText); });
+        if (updateFunction === void 0) { updateFunction = null; }
+        this.http.get(this.apiUrl + '/todos').subscribe(function (result) {
+            _this.items = result.json();
+            if (updateFunction) {
+                updateFunction();
+            }
+            ;
+        }, function (error) { return console.log(error.statusText); });
     };
     TodoListRemoteService.prototype.getListData = function () {
-        this.updateListData();
         return this.items;
     };
     TodoListRemoteService.prototype.addItem = function (newItem) {
