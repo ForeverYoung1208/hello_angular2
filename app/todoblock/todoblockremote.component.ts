@@ -20,5 +20,13 @@ export class TodoBlockRemoteComponent implements OnInit{
 		this.listItemsService.updateListData( () => {this.items = this.listItemsService.getListData() });
 	}
 
+	refreshItems(){
+		this.items = this.listItemsService.getListData()
+	}
+
+	removeItem( item:TodoItem){
+		this.listItemsService.removeItemById( item.id, () => {this.items = this.listItemsService.getListData() } )
+	}
+
 
 }

@@ -1,6 +1,6 @@
 <div class="todoblock">
-	<newitemform></newitemform>
-	<button (click)="addEmptyItem()">add task free  </button>
+	<h2> Frontend only </h2>
+	<button (click)="addEmptyItem()">add task locally  </button>
 
 	<p>local todos</p>
 
@@ -9,8 +9,6 @@
 
 		<todoitem [todoItem]="item" (deleteItemEvent)="removeItem($event) "></todoitem>
 
-
-		<button (click)="removeItem(item)">delete (block)</button>
 	</li>
 
 <br/>

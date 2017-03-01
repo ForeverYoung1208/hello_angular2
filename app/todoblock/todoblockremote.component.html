@@ -1,6 +1,6 @@
 <div class="todoblock">
-	<newitemform></newitemform>
-	<button (click)="addEmptyItem()">add task free  </button>
+	<h2> With backend on {{ this.listItemsService.apiUrl }} </h2>
+	<newitemform (listRefreshEvent)="refreshItems()" ></newitemform>
 
 	<p>remote todos</p>
 
@@ -10,7 +10,6 @@
 		<todoitem [todoItem]="item" (deleteItemEvent)="removeItem($event) "></todoitem>
 
 
-		<button (click)="removeItem(item)">delete (block)</button>
 	</li>
 
 <br/>

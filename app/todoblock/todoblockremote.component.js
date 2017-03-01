@@ -18,6 +18,13 @@ var TodoBlockRemoteComponent = (function () {
         var _this = this;
         this.listItemsService.updateListData(function () { _this.items = _this.listItemsService.getListData(); });
     };
+    TodoBlockRemoteComponent.prototype.refreshItems = function () {
+        this.items = this.listItemsService.getListData();
+    };
+    TodoBlockRemoteComponent.prototype.removeItem = function (item) {
+        var _this = this;
+        this.listItemsService.removeItemById(item.id, function () { _this.items = _this.listItemsService.getListData(); });
+    };
     TodoBlockRemoteComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

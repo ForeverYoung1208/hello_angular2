@@ -19,10 +19,13 @@ export class TodoMenuComponent  {
 	constructor(){
 
 		this.menu.push( 
-			new MenuItem( 1, ' Todo только фронтенд ',	(m:MenuItem) =>{ alert( m.name )} )
+			new MenuItem( 1, ' Алерт1 ',	(m:MenuItem) =>{ alert( m.name )} )
 		)
 		this.menu.push(
-			new MenuItem( 2, ' Todo с бэкэндом ',	(m:MenuItem) =>{ alert( m.name )} 	)
+			new MenuItem( 2, ' Алерт2 ',	(m:MenuItem) =>{ alert( m.name )} 	)
+		)
+		this.menu.push(
+			new MenuItem( 3, ' Алерт3 ',	(m:MenuItem) =>{ alert( m.name )} 	)
 		)
 	}
  

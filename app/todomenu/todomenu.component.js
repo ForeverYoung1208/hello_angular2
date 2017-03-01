@@ -20,8 +20,9 @@ var MenuItem = (function () {
 var TodoMenuComponent = (function () {
     function TodoMenuComponent() {
         this.menu = [];
-        this.menu.push(new MenuItem(1, ' Todo только фронтенд ', function (m) { alert(m.name); }));
-        this.menu.push(new MenuItem(2, ' Todo с бэкэндом ', function (m) { alert(m.name); }));
+        this.menu.push(new MenuItem(1, ' Алерт1 ', function (m) { alert(m.name); }));
+        this.menu.push(new MenuItem(2, ' Алерт2 ', function (m) { alert(m.name); }));
+        this.menu.push(new MenuItem(3, ' Алерт3 ', function (m) { alert(m.name); }));
     }
     TodoMenuComponent = __decorate([
         core_1.Component({

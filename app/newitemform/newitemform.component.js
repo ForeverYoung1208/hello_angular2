@@ -11,28 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var todolist_service_1 = require('./../shared/todolist.service');
 var NewItemFormComponent = (function () {
-    function NewItemFormComponent(todoListService) {
+    function NewItemFormComponent(todoListService, todoListRemoteService) {
         this.todoListService = todoListService;
+        this.todoListRemoteService = todoListRemoteService;
         this.newItem = {
             id: 0,
             caption: 'testteeeeq',
             duration: 3,
             isDone: false
         };
-        this.newItemEvent = new core_1.EventEmitter();
+        this.listRefreshEvent = new core_1.EventEmitter();
     }
     ;
-    NewItemFormComponent.prototype.onNewItem = function () {
-        this.newItemEvent.emit(Object.assign({}, this.newItem));
-    };
     NewItemFormComponent.prototype.onAddItem = function () {
-        this.todoListService.addItem(Object.assign({}, this.newItem));
+        var _this = this;
+        this.todoListRemoteService.addItem(Object.assign({}, this.newItem), function () { _this.listRefreshEvent.emit(); });
     };
     ;
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], NewItemFormComponent.prototype, "newItemEvent", void 0);
+    ], NewItemFormComponent.prototype, "listRefreshEvent", void 0);
     NewItemFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -40,7 +39,7 @@ var NewItemFormComponent = (function () {
             templateUrl: 'newitemform.component.html',
             styleUrls: ['newitemform.component.css']
         }), 
-        __metadata('design:paramtypes', [todolist_service_1.TodoListLocalService])
+        __metadata('design:paramtypes', [todolist_service_1.TodoListLocalService, todolist_service_1.TodoListRemoteService])
     ], NewItemFormComponent);
     return NewItemFormComponent;
 }());

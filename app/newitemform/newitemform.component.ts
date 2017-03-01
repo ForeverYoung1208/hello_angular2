@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
-import { TodoListService, TodoListLocalService } from './../shared/todolist.service'
+import { TodoListService, TodoListLocalService, TodoListRemoteService } from './../shared/todolist.service'
 
 
 @Component({
@@ -17,17 +17,14 @@ export class NewItemFormComponent{
 												isDone:false
 											};;
 
-	constructor( private todoListService:TodoListLocalService ){	}
+	constructor( private todoListService:TodoListLocalService, private todoListRemoteService:TodoListRemoteService  ){	}
 
-	@Output() newItemEvent = new EventEmitter()
-
-	onNewItem(){
-		this.newItemEvent.emit( Object.assign({}, this.newItem ) );
-	}
-
+	@Output() listRefreshEvent = new EventEmitter()
 	
 	onAddItem(){
-		this.todoListService.addItem( Object.assign({}, this.newItem) )
+
+		this.todoListRemoteService.addItem( Object.assign({}, this.newItem), () => { this.listRefreshEvent.emit() } )
+		
 	};
 
 

@@ -55,16 +55,19 @@ var TodoListRemoteService = (function () {
     function TodoListRemoteService(http) {
         this.http = http;
         this.items = [];
-        this.apiUrl = 'http://192.168.0.128:3000';
+        //	apiUrl:string = 'http://192.168.0.128:3000';
+        this.apiUrl = 'http://192.168.99.51:3000';
+        this.deleteHeaders = new http_1.Headers();
+        this.deleteHeaders.append('Method', 'DELETE');
     }
     ;
-    TodoListRemoteService.prototype.updateListData = function (updateFunction) {
+    TodoListRemoteService.prototype.updateListData = function (callback) {
         var _this = this;
-        if (updateFunction === void 0) { updateFunction = null; }
+        if (callback === void 0) { callback = null; }
         this.http.get(this.apiUrl + '/todos').subscribe(function (result) {
             _this.items = result.json();
-            if (updateFunction) {
-                updateFunction();
+            if (callback) {
+                callback();
             }
             ;
         }, function (error) { return console.log(error.statusText); });
@@ -72,26 +75,27 @@ var TodoListRemoteService = (function () {
     TodoListRemoteService.prototype.getListData = function () {
         return this.items;
     };
-    TodoListRemoteService.prototype.addItem = function (newItem) {
-        newItem.id = this.nextItemId();
-        this.items.push(newItem);
+    TodoListRemoteService.prototype.addItem = function (newItem, callback) {
+        var _this = this;
+        if (callback === void 0) { callback = null; }
+        this.http.post(this.apiUrl + '/todos', newItem).subscribe(function (result) {
+            _this.updateListData(callback);
+            console.log(result.statusText);
+        }, function (error) { return console.log(error.statusText); });
     };
     ;
-    TodoListRemoteService.prototype.nextItemId = function () {
-        var nextItemId = 1;
-        if (this.items.length > 0) {
-            nextItemId = Math.max.apply(null, this.items.map(function (a) { return a.id; })) + 1;
-        }
-        ;
-        return nextItemId;
+    TodoListRemoteService.prototype.removeItemById = function (id, callback) {
+        var _this = this;
+        if (callback === void 0) { callback = null; }
+        this.http.delete(this.apiUrl + '/todos/' + id, this.deleteHeaders).subscribe(function (result) {
+            _this.updateListData(callback);
+            console.log(result.statusText);
+        }, function (error) { return console.log(error.statusText); });
     };
+    ;
     TodoListRemoteService.prototype.addEmptyItem = function () {
-        var newItem = new todoitem_1.TodoItem(this.nextItemId(), 'write caption here', false, 1);
+        var newItem = new todoitem_1.TodoItem(0, 'write caption here', false, 1);
         console.log('new item in service: ' + newItem);
-    };
-    TodoListRemoteService.prototype.removeItemById = function (id) {
-        var i = this.items.findIndex(function (item) { return item.id == id; });
-        this.items.splice(i, 1);
     };
     TodoListRemoteService.prototype.getItemById = function (id) {
         var t = this.items.find(function (item) { return item.id == id; });
