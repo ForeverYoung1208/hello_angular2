@@ -52,8 +52,8 @@ export class TodoListLocalService implements TodoListService {
 export class TodoListRemoteService implements TodoListService {
 	items: TodoItem[] = [];
 	private deleteHeaders: Headers;
-//	apiUrl:string = 'http://192.168.0.128:3000';
-	apiUrl:string = 'http://192.168.99.51:3000';
+	apiUrl:string = 'http://192.168.0.128:3000';
+//	apiUrl:string = 'http://192.168.99.51:3000';
 
 	constructor( public http:Http ){ 
 		this.deleteHeaders = new Headers();

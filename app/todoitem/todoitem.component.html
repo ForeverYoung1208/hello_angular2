@@ -3,10 +3,11 @@
 		caption:
 		<textarea 
 			[id]="'textarea-' + todoItem.id"
-			[(ngModel)]="todoItem.caption">
+			[(ngModel)]="todoItem.caption"
+			(ngModelChange)="onChange()" >
 		</textarea>
-		<input type="checkbox" [(ngModel)]="todoItem.isDone" />
-		<input [(ngModel)]="todoItem.duration" />
+		<input type="checkbox" [(ngModel)]="todoItem.isDone" (ngModelChange)="onChange()" />
+		<input [(ngModel)]="todoItem.duration" (ngModelChange)="onChange()" />
 		<button (click)="onDelete()" > delete Item</button>
-		<button (click)="onUpdate()" > update Item</button>
+		<button (click)="onUpdate()" *ngIf="isChanged"> update Item</button>
 </div>

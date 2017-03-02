@@ -29,7 +29,7 @@ export class TodoBlockRemoteComponent implements OnInit{
 	}
 
 
-	updateItem (item: TodoItem ) {
+	updateItem (item: TodoItem) {
 		this.listItemsService.updateItem( item ).subscribe(
 			result => { 
 									this.refreshItems();

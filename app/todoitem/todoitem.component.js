@@ -14,12 +14,17 @@ var TodoItemComponent = (function () {
     function TodoItemComponent() {
         this.deleteItemEvent = new core_1.EventEmitter();
         this.updateItemEvent = new core_1.EventEmitter();
+        this.isChanged = false;
     }
+    TodoItemComponent.prototype.onChange = function () {
+        this.isChanged = true;
+    };
     TodoItemComponent.prototype.onDelete = function () {
         this.deleteItemEvent.emit(this.todoItem);
     };
     TodoItemComponent.prototype.onUpdate = function () {
         this.updateItemEvent.emit(this.todoItem);
+        this.isChanged = false;
     };
     __decorate([
         core_1.Input(), 

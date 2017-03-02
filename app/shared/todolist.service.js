@@ -52,11 +52,11 @@ var TodoListLocalService = (function () {
 }());
 exports.TodoListLocalService = TodoListLocalService;
 var TodoListRemoteService = (function () {
+    //	apiUrl:string = 'http://192.168.99.51:3000';
     function TodoListRemoteService(http) {
         this.http = http;
         this.items = [];
-        //	apiUrl:string = 'http://192.168.0.128:3000';
-        this.apiUrl = 'http://192.168.99.51:3000';
+        this.apiUrl = 'http://192.168.0.128:3000';
         this.deleteHeaders = new http_1.Headers();
         this.deleteHeaders.append('Method', 'DELETE');
     }
