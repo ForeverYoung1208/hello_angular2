@@ -25,6 +25,13 @@ var TodoBlockRemoteComponent = (function () {
         var _this = this;
         this.listItemsService.removeItemById(item.id, function () { _this.items = _this.listItemsService.getListData(); });
     };
+    TodoBlockRemoteComponent.prototype.updateItem = function (item) {
+        var _this = this;
+        this.listItemsService.updateItem(item).subscribe(function (result) {
+            _this.refreshItems();
+            console.log(result.statusText);
+        }, function (error) { return console.log(error.statusText); });
+    };
     TodoBlockRemoteComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

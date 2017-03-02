@@ -29,4 +29,16 @@ export class TodoBlockRemoteComponent implements OnInit{
 	}
 
 
+	updateItem (item: TodoItem ) {
+		this.listItemsService.updateItem( item ).subscribe(
+			result => { 
+									this.refreshItems();
+									console.log( result.statusText ) 
+								},
+			error => console.log( error.statusText ) 
+		)
+	}
+
+
+
 }

@@ -13,9 +13,13 @@ var todoitem_1 = require('./../shared/todoitem');
 var TodoItemComponent = (function () {
     function TodoItemComponent() {
         this.deleteItemEvent = new core_1.EventEmitter();
+        this.updateItemEvent = new core_1.EventEmitter();
     }
     TodoItemComponent.prototype.onDelete = function () {
         this.deleteItemEvent.emit(this.todoItem);
+    };
+    TodoItemComponent.prototype.onUpdate = function () {
+        this.updateItemEvent.emit(this.todoItem);
     };
     __decorate([
         core_1.Input(), 
@@ -25,6 +29,10 @@ var TodoItemComponent = (function () {
         core_1.Output(), 
         __metadata('design:type', Object)
     ], TodoItemComponent.prototype, "deleteItemEvent", void 0);
+    __decorate([
+        core_1.Output(), 
+        __metadata('design:type', Object)
+    ], TodoItemComponent.prototype, "updateItemEvent", void 0);
     TodoItemComponent = __decorate([
         core_1.Component({
             moduleId: module.id,

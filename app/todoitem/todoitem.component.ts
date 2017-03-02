@@ -11,9 +11,14 @@ export class TodoItemComponent{
 	@Input() todoItem: TodoItem;
 
 	@Output() deleteItemEvent = new EventEmitter()
+	@Output() updateItemEvent = new EventEmitter()
 
 	onDelete() {
 		this.deleteItemEvent.emit(this.todoItem)
+	}
+
+	onUpdate() {
+		this.updateItemEvent.emit(this.todoItem)
 	}
 
 

@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 import { Http, Response, Headers } from '@angular/http';
 import { todoListData, todoListData2 } from './todolistdata';
 import { TodoItem } from './todoitem';
-
+	
 
 
 export interface TodoListService{
 	items:Array<TodoItem>;
 	getListData( )		:Array<TodoItem>;
 	addItem( newItem	:TodoItem ):any;
-	getItemById( id:number ): TodoItem;
-	addEmptyItem( )		:any;
 	removeItemById( id:number ):any;
 }
 
@@ -79,9 +78,9 @@ export class TodoListRemoteService implements TodoListService {
 	addItem(newItem: TodoItem, callback:Function = null ) {
 		this.http.post(this.apiUrl+'/todos', newItem).subscribe(
 			result => { 
-				this.updateListData( callback )
-				console.log( result.statusText ) 
-			},
+									this.updateListData( callback )
+									console.log( result.statusText ) 
+								},
 			error => console.log( error.statusText )			
 		);
 	};
@@ -89,22 +88,16 @@ export class TodoListRemoteService implements TodoListService {
 	removeItemById( id: number, callback:Function = null ){
 		this.http.delete( this.apiUrl+'/todos/'+id, this.deleteHeaders ).subscribe(
 			result => { 
-				this.updateListData( callback )
-				console.log( result.statusText ) 
-			},
+									this.updateListData( callback )
+									console.log( result.statusText ) 
+								},
 			error => console.log( error.statusText )			
 		);
 	};
 
-
-	addEmptyItem(){
-		let newItem = new TodoItem(0 , 'write caption here', false, 1);
-		console.log( 'new item in service: ' + newItem);
+	updateItem( item:TodoItem ):Observable<Response> {
+		return this.http.put( this.apiUrl+'/todos/'+item.id, item )
 	}
 
 
-	getItemById( id:number ): TodoItem {
-		let t: TodoItem = this.items.find( item => item.id == id) 
-		return t
-	}	
 }

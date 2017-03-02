@@ -93,13 +93,8 @@ var TodoListRemoteService = (function () {
         }, function (error) { return console.log(error.statusText); });
     };
     ;
-    TodoListRemoteService.prototype.addEmptyItem = function () {
-        var newItem = new todoitem_1.TodoItem(0, 'write caption here', false, 1);
-        console.log('new item in service: ' + newItem);
-    };
-    TodoListRemoteService.prototype.getItemById = function (id) {
-        var t = this.items.find(function (item) { return item.id == id; });
-        return t;
+    TodoListRemoteService.prototype.updateItem = function (item) {
+        return this.http.put(this.apiUrl + '/todos/' + item.id, item);
     };
     TodoListRemoteService = __decorate([
         core_1.Injectable(), 
