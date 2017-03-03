@@ -51,6 +51,61 @@ export class TodoListLocalService implements TodoListService {
 @Injectable()
 export class TodoListRemoteService implements TodoListService {
 	items: TodoItem[] = [];
+	apiUrl:string = 'http://192.168.0.128:3000';
+//	apiUrl:string = 'http://192.168.99.51:3000';
+
+	constructor( public http:Http ){ };
+
+
+	updateListData( callback:Function = null){
+		this.http.get(this.apiUrl+'/todos').subscribe(
+			result => { 
+									this.items = result.json()
+									if ( callback ) { callback() };
+								},
+			error => console.log( error.statusText )
+		)
+	}
+
+	getListData(): TodoItem[] {
+		return this.items;
+	}
+
+	addItem(newItem: TodoItem, callback:Function = null ) {
+		this.http.post(this.apiUrl+'/todos', newItem).subscribe(
+			result => { 
+									this.updateListData( callback )
+									console.log( result.statusText ) 
+								},
+			error => console.log( error.statusText )			
+		);
+	};
+
+	removeItemById( id: number, callback:Function = null ){
+		this.http.delete( this.apiUrl+'/todos/'+id).subscribe(
+			result => { 
+									this.updateListData( callback )
+									console.log( result.statusText ) 
+								},
+			error => console.log( error.statusText )			
+		);
+	};
+
+	updateItem( item:TodoItem ):Observable<Response> {
+		return this.http.put( this.apiUrl+'/todos/'+item.id, item )
+	}
+}
+
+
+
+
+
+
+
+
+@Injectable()
+export class TodoListWSService implements TodoListService {
+	items: TodoItem[] = [];
 	private deleteHeaders: Headers;
 	apiUrl:string = 'http://192.168.0.128:3000';
 //	apiUrl:string = 'http://192.168.99.51:3000';
