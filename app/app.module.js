@@ -21,6 +21,7 @@ var todoblockremote_component_1 = require('./todoblock/todoblockremote.component
 var todoitem_component_1 = require('./todoitem/todoitem.component');
 var newitemform_component_1 = require('./newitemform/newitemform.component');
 var todolist_service_1 = require('./shared/todolist.service');
+var websocket_service_1 = require('./shared/websocket.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -43,7 +44,10 @@ var AppModule = (function () {
                 todoitem_component_1.TodoItemComponent,
                 newitemform_component_1.NewItemFormComponent
             ],
-            providers: [todolist_service_1.TodoListLocalService, todolist_service_1.TodoListRemoteService],
+            providers: [todolist_service_1.TodoListLocalService,
+                todolist_service_1.TodoListRemoteService,
+                websocket_service_1.WebSocketService
+            ],
             bootstrap: [app_component_1.AppComponent]
         }), 
         __metadata('design:paramtypes', [])

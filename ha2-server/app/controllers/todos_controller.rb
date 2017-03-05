@@ -5,6 +5,10 @@ class TodosController < ApplicationController
   def index
     @todos = Todo.all
 
+    ActionCable.server.broadcast 'todos',
+      caption: @todos[0].caption,
+      duration: @todos[0].duration
+
     render json: @todos
   end
 
@@ -18,10 +22,16 @@ class TodosController < ApplicationController
     @todo = Todo.new(todo_params)
 
     if @todo.save
+      ActionCable.server.broadcast 'todos',
+        caption: @todo.caption,
+        duration: @todo.duration
+
       render json: @todo, status: :created, location: @todo
     else
       render json: @todo.errors, status: :unprocessable_entity
     end
+
+
   end
 
   # PATCH/PUT /todos/1

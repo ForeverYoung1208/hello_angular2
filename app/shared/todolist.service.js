@@ -52,7 +52,7 @@ var TodoListLocalService = (function () {
 }());
 exports.TodoListLocalService = TodoListLocalService;
 var TodoListRemoteService = (function () {
-    //	apiUrl:string = 'http://192.168.99.51:3000';
+    //  apiUrl:string = 'http://192.168.99.51:3000';
     function TodoListRemoteService(http) {
         this.http = http;
         this.items = [];
@@ -102,53 +102,23 @@ var TodoListRemoteService = (function () {
 }());
 exports.TodoListRemoteService = TodoListRemoteService;
 var TodoListWSService = (function () {
-    //	apiUrl:string = 'http://192.168.99.51:3000';
-    function TodoListWSService(http) {
-        this.http = http;
-        this.items = [];
-        this.apiUrl = 'http://192.168.0.128:3000';
-        this.deleteHeaders = new http_1.Headers();
-        this.deleteHeaders.append('Method', 'DELETE');
+    function TodoListWSService() {
     }
-    ;
-    TodoListWSService.prototype.updateListData = function (callback) {
-        var _this = this;
-        if (callback === void 0) { callback = null; }
-        this.http.get(this.apiUrl + '/todos').subscribe(function (result) {
-            _this.items = result.json();
-            if (callback) {
-                callback();
-            }
-            ;
-        }, function (error) { return console.log(error.statusText); });
-    };
     TodoListWSService.prototype.getListData = function () {
-        return this.items;
     };
     TodoListWSService.prototype.addItem = function (newItem, callback) {
-        var _this = this;
         if (callback === void 0) { callback = null; }
-        this.http.post(this.apiUrl + '/todos', newItem).subscribe(function (result) {
-            _this.updateListData(callback);
-            console.log(result.statusText);
-        }, function (error) { return console.log(error.statusText); });
     };
     ;
     TodoListWSService.prototype.removeItemById = function (id, callback) {
-        var _this = this;
         if (callback === void 0) { callback = null; }
-        this.http.delete(this.apiUrl + '/todos/' + id, this.deleteHeaders).subscribe(function (result) {
-            _this.updateListData(callback);
-            console.log(result.statusText);
-        }, function (error) { return console.log(error.statusText); });
     };
     ;
     TodoListWSService.prototype.updateItem = function (item) {
-        return this.http.put(this.apiUrl + '/todos/' + item.id, item);
     };
     TodoListWSService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
+        __metadata('design:paramtypes', [])
     ], TodoListWSService);
     return TodoListWSService;
 }());
