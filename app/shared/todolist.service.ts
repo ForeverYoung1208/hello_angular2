@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
-// import { Observable, Subject, Subscription } from 'rxjs/Rx';
-// import { WebSocketSubject } from "rxjs/observable/dom/WebSocketSubject"
-import { WebSocketService } from './websocket.service'
+
+import { WebSocketService, ChannelWebsocketService } from './websocket.service'
 
 import { Http, Response, Headers } from '@angular/http';
 import { todoListData, todoListData2 } from './todolistdata';
@@ -13,6 +12,10 @@ export interface TodoListService{
   addItem( newItem  :TodoItem ):any;
   removeItemById( id:number ):any;
 }
+
+let APIURL:string ='http://192.168.99.51:3000';
+// let APIURL:string = 'http://192.168.0.128:3000';
+
 
 @Injectable()
 export class TodoListLocalService implements TodoListService {
@@ -52,8 +55,7 @@ export class TodoListLocalService implements TodoListService {
 @Injectable()
 export class TodoListRemoteService implements TodoListService {
   items: TodoItem[] = [];
-  apiUrl:string = 'http://192.168.0.128:3000';
-//  apiUrl:string = 'http://192.168.99.51:3000';
+  apiUrl:string = APIURL;
 
   constructor( public http:Http ){ };
   updateListData( callback:Function = null){
@@ -102,7 +104,13 @@ export class TodoListRemoteService implements TodoListService {
 
 
 @Injectable()
-export class TodoListWSService {
+export class TodoListWSService extends ChannelWebsocketService{
+  constructor(webSocketService: WebSocketService ) {
+    super( webSocketService );
+    this.identifier = {
+      channel: 'todos'
+    };
+  }  
 
 
   getListData(){

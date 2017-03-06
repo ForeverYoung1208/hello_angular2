@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -9,9 +14,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var websocket_service_1 = require('./websocket.service');
 var http_1 = require('@angular/http');
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
+var APIURL = 'http://192.168.99.51:3000';
+// let APIURL:string = 'http://192.168.0.128:3000';
 var TodoListLocalService = (function () {
     function TodoListLocalService() {
         this.items = todolistdata_1.todoListData;
@@ -52,11 +60,10 @@ var TodoListLocalService = (function () {
 }());
 exports.TodoListLocalService = TodoListLocalService;
 var TodoListRemoteService = (function () {
-    //  apiUrl:string = 'http://192.168.99.51:3000';
     function TodoListRemoteService(http) {
         this.http = http;
         this.items = [];
-        this.apiUrl = 'http://192.168.0.128:3000';
+        this.apiUrl = APIURL;
     }
     ;
     TodoListRemoteService.prototype.updateListData = function (callback) {
@@ -101,8 +108,13 @@ var TodoListRemoteService = (function () {
     return TodoListRemoteService;
 }());
 exports.TodoListRemoteService = TodoListRemoteService;
-var TodoListWSService = (function () {
-    function TodoListWSService() {
+var TodoListWSService = (function (_super) {
+    __extends(TodoListWSService, _super);
+    function TodoListWSService(webSocketService) {
+        _super.call(this, webSocketService);
+        this.identifier = {
+            channel: 'todos'
+        };
     }
     TodoListWSService.prototype.getListData = function () {
     };
@@ -118,9 +130,9 @@ var TodoListWSService = (function () {
     };
     TodoListWSService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [websocket_service_1.WebSocketService])
     ], TodoListWSService);
     return TodoListWSService;
-}());
+}(websocket_service_1.ChannelWebsocketService));
 exports.TodoListWSService = TodoListWSService;
 //# sourceMappingURL=todolist.service.js.map
