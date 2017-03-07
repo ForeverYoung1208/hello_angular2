@@ -1,7 +1,8 @@
+import { MyConfig } from './../shared/myconfig'
 import { Component, OnInit } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
-// import { TodoListService, TodoListRemoteService } from './../shared/todolist.service'
-import { ChannelWebsocketService } from './../shared/websocket.service'
+import { TodoListWSService } from './../shared/todolist.service'
+import { WebSocketService } from './../shared/websocket.service'
 
 
 @Component({
@@ -12,12 +13,24 @@ import { ChannelWebsocketService } from './../shared/websocket.service'
 })
 
 export class TodoBlockWSComponent implements OnInit{
-	items: Array<TodoItem>;
-	constructor( public listItemsService: ChannelWebsocketService) {
+	items: Array<TodoItem> = [];
+	constructor( public listItemsService: TodoListWSService, private webSocketService: WebSocketService) {
+ 		this.webSocketService.start( MyConfig.apiProtocolWS+MyConfig.apiAddress+MyConfig.cableSuffix );
+    this.listItemsService.subscribed.subscribe( ( data:boolean ) => {
+	    if( data ){
+	        this.getAllItems();
+    	}
+		} ); 		
 
 	}
 
+  private getAllItems():void {
+    this.listItemsService.send( { action: 'index' } );
+	}
+
+
 	ngOnInit(){
+
 	}
 
 	refreshItems(){

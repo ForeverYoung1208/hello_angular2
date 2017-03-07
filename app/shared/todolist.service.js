@@ -18,8 +18,7 @@ var websocket_service_1 = require('./websocket.service');
 var http_1 = require('@angular/http');
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
-var APIURL = 'http://192.168.99.51:3000';
-// let APIURL:string = 'http://192.168.0.128:3000';
+var myconfig_1 = require('./myconfig');
 var TodoListLocalService = (function () {
     function TodoListLocalService() {
         this.items = todolistdata_1.todoListData;
@@ -63,7 +62,7 @@ var TodoListRemoteService = (function () {
     function TodoListRemoteService(http) {
         this.http = http;
         this.items = [];
-        this.apiUrl = APIURL;
+        this.apiUrl = myconfig_1.MyConfig.apiUrl;
     }
     ;
     TodoListRemoteService.prototype.updateListData = function (callback) {
@@ -120,6 +119,7 @@ var TodoListWSService = (function (_super) {
     };
     TodoListWSService.prototype.addItem = function (newItem, callback) {
         if (callback === void 0) { callback = null; }
+        this.send(newItem);
     };
     ;
     TodoListWSService.prototype.removeItemById = function (id, callback) {

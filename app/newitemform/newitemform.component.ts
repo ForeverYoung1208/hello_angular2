@@ -17,7 +17,7 @@ export class NewItemFormComponent{
 												isDone:false
 											};;
 
-	constructor( private todoListService:TodoListLocalService, private todoListRemoteService:TodoListRemoteService  ){	}
+	constructor( private todoListRemoteService:TodoListRemoteService  ){	}
 
 	@Output() listRefreshEvent = new EventEmitter()
 	

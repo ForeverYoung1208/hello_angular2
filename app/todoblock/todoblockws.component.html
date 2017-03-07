@@ -1,8 +1,8 @@
 <div class="todoblock">
-	<h2> With backend on {{ this.listItemsService.apiUrl }} </h2>
-	<newitemform (listRefreshEvent)="refreshItems()" ></newitemform>
+	<h2> With backend on {{ this.listItemsService.url }} </h2>
+	<wsform (listRefreshEvent)="refreshItems()" ></wsform>
 
-	<p>remote todos</p>
+	<p>WebSocket todos</p>
 
 	<li *ngFor="let item of items">
 

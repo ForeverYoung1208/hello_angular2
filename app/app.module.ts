@@ -4,19 +4,21 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http'
 
-
 import { AppComponent }  from './app.component';
 
 import { TodoMenuComponent }  from './todomenu/todomenu.component';
 import { Hello2Component }  from './hello2/hello2.component';
+
 import { TodoBlockComponent }  from './todoblock/todoblock.component';
 import { TodoBlockRemoteComponent }  from './todoblock/todoblockremote.component';
 import { TodoBlockWSComponent }  from './todoblock/todoblockws.component';
+import { WSFormComponent }  from './newitemform/wsform.component';
+
 
 import { TodoItemComponent }  from './todoitem/todoitem.component';
 import { NewItemFormComponent }  from './newitemform/newitemform.component';
-import { TodoListService, TodoListLocalService, TodoListRemoteService } from './shared/todolist.service'
-import { WebSocketService } from './shared/websocket.service'
+import { TodoListService, TodoListLocalService, TodoListRemoteService, TodoListWSService } from './shared/todolist.service'
+import { WebSocketService, ChannelWebsocketService } from './shared/websocket.service'
 
 
 
@@ -29,7 +31,7 @@ import { WebSocketService } from './shared/websocket.service'
                     {path: "todo-ws", component: TodoBlockWSComponent},
                     {path: "", component: Hello2Component }
                   ]),
-                  HttpModule
+                  HttpModule                 
                 ],
   declarations: [ AppComponent, 
                   TodoMenuComponent,
@@ -37,12 +39,15 @@ import { WebSocketService } from './shared/websocket.service'
                   TodoBlockComponent,
                   TodoBlockRemoteComponent,
                   TodoBlockWSComponent,
+                  WSFormComponent,
                   TodoItemComponent,
                   NewItemFormComponent
                 ],
   providers:  [ TodoListLocalService, 
                 TodoListRemoteService,
-                WebSocketService
+                TodoListWSService,
+                WebSocketService,
+                ChannelWebsocketService
               ],
   bootstrap: [ AppComponent ]
 })

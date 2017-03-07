@@ -10,37 +10,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var todolist_service_1 = require('./../shared/todolist.service');
-var NewItemFormComponent = (function () {
-    function NewItemFormComponent(todoListRemoteService) {
-        this.todoListRemoteService = todoListRemoteService;
+var WSFormComponent = (function () {
+    function WSFormComponent(todoListWSService) {
+        this.todoListWSService = todoListWSService;
         this.newItem = {
             id: 0,
-            caption: 'testteeeeq',
-            duration: 3,
+            caption: 'testteeeequick-ws',
+            duration: 1,
             isDone: false
         };
         this.listRefreshEvent = new core_1.EventEmitter();
     }
     ;
-    NewItemFormComponent.prototype.onAddItem = function () {
+    WSFormComponent.prototype.onAddItem = function () {
         var _this = this;
-        this.todoListRemoteService.addItem(Object.assign({}, this.newItem), function () { _this.listRefreshEvent.emit(); });
+        this.todoListWSService.addItem(Object.assign({}, this.newItem), function () { _this.listRefreshEvent.emit(); });
     };
     ;
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)
-    ], NewItemFormComponent.prototype, "listRefreshEvent", void 0);
-    NewItemFormComponent = __decorate([
+    ], WSFormComponent.prototype, "listRefreshEvent", void 0);
+    WSFormComponent = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'newitemform',
-            templateUrl: 'newitemform.component.html',
+            selector: 'wsform',
+            templateUrl: 'wsform.component.html',
             styleUrls: ['newitemform.component.css']
         }), 
-        __metadata('design:paramtypes', [todolist_service_1.TodoListRemoteService])
-    ], NewItemFormComponent);
-    return NewItemFormComponent;
+        __metadata('design:paramtypes', [todolist_service_1.TodoListWSService])
+    ], WSFormComponent);
+    return WSFormComponent;
 }());
-exports.NewItemFormComponent = NewItemFormComponent;
-//# sourceMappingURL=newitemform.component.js.map
+exports.WSFormComponent = WSFormComponent;
+//# sourceMappingURL=wsform.component.js.map

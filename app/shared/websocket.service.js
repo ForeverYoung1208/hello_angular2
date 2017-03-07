@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var myconfig_1 = require('./myconfig');
 var core_1 = require('@angular/core');
 var Rx_1 = require('rxjs/Rx');
 var WebSocketService = (function () {
     function WebSocketService() {
-        this.url = 'http://192.168.0.128:3000';
-        //  apiUrl:string = 'http://192.168.99.51:3000';
+        this.url = myconfig_1.MyConfig.apiUrl + myconfig_1.MyConfig.cableSuffix;
         this.message = new Rx_1.Subject();
         this.opened = new Rx_1.Subject();
     }

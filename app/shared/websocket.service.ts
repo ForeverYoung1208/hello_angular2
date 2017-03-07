@@ -1,3 +1,4 @@
+import { MyConfig } from './myconfig'
 import { Injectable } from '@angular/core';
 import { Observable, Subject, Subscription } from 'rxjs/Rx';
 import { WebSocketSubject } from "rxjs/observable/dom/WebSocketSubject"
@@ -6,8 +7,9 @@ import { WebSocketSubject } from "rxjs/observable/dom/WebSocketSubject"
 export class WebSocketService {
   private ws: WebSocketSubject<Object>;
   private socket: Subscription;
-  private url:string = 'http://192.168.0.128:3000';
-//  apiUrl:string = 'http://192.168.99.51:3000';
+  private url:string = MyConfig.apiUrl+MyConfig.cableSuffix;
+
+
 
   public message: Subject<Object> = new Subject();
   public opened: Subject<boolean> = new Subject();
