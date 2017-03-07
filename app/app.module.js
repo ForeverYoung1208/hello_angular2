@@ -18,6 +18,7 @@ var todomenu_component_1 = require('./todomenu/todomenu.component');
 var hello2_component_1 = require('./hello2/hello2.component');
 var todoblock_component_1 = require('./todoblock/todoblock.component');
 var todoblockremote_component_1 = require('./todoblock/todoblockremote.component');
+var todoblockws_component_1 = require('./todoblock/todoblockws.component');
 var todoitem_component_1 = require('./todoitem/todoitem.component');
 var newitemform_component_1 = require('./newitemform/newitemform.component');
 var todolist_service_1 = require('./shared/todolist.service');
@@ -32,6 +33,7 @@ var AppModule = (function () {
                 router_1.RouterModule.forRoot([
                     { path: "todo-frontend", component: todoblock_component_1.TodoBlockComponent },
                     { path: "todo-backend", component: todoblockremote_component_1.TodoBlockRemoteComponent },
+                    { path: "todo-ws", component: todoblockws_component_1.TodoBlockWSComponent },
                     { path: "", component: hello2_component_1.Hello2Component }
                 ]),
                 http_1.HttpModule
@@ -41,6 +43,7 @@ var AppModule = (function () {
                 hello2_component_1.Hello2Component,
                 todoblock_component_1.TodoBlockComponent,
                 todoblockremote_component_1.TodoBlockRemoteComponent,
+                todoblockws_component_1.TodoBlockWSComponent,
                 todoitem_component_1.TodoItemComponent,
                 newitemform_component_1.NewItemFormComponent
             ],

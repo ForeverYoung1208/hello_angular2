@@ -1,0 +1,28 @@
+<div class="todoblock">
+	<h2> With backend on {{ this.listItemsService.apiUrl }} </h2>
+	<newitemform (listRefreshEvent)="refreshItems()" ></newitemform>
+
+	<p>remote todos</p>
+
+	<li *ngFor="let item of items">
+
+
+		<todoitem 
+			[todoItem]="item" 
+			(deleteItemEvent)="removeItem($event)"
+			(updateItemEvent)="updateItem($event)"
+		></todoitem>
+
+
+	</li>
+
+<br/>
+
+	<li *ngFor="let item of items">
+		{{item.caption}}
+		{{item.duration}}
+		{{item.isDone}}
+
+	</li>
+
+</div>

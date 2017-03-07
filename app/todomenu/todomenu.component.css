@@ -1,1 +1,4 @@
-todomenu.component.css
+nav li {
+	margin: 2em;
+	cursor: pointer;
+}

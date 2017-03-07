@@ -11,6 +11,8 @@ import { TodoMenuComponent }  from './todomenu/todomenu.component';
 import { Hello2Component }  from './hello2/hello2.component';
 import { TodoBlockComponent }  from './todoblock/todoblock.component';
 import { TodoBlockRemoteComponent }  from './todoblock/todoblockremote.component';
+import { TodoBlockWSComponent }  from './todoblock/todoblockws.component';
+
 import { TodoItemComponent }  from './todoitem/todoitem.component';
 import { NewItemFormComponent }  from './newitemform/newitemform.component';
 import { TodoListService, TodoListLocalService, TodoListRemoteService } from './shared/todolist.service'
@@ -24,6 +26,7 @@ import { WebSocketService } from './shared/websocket.service'
                   RouterModule.forRoot([  
                     {path: "todo-frontend", component: TodoBlockComponent},
                     {path: "todo-backend", component: TodoBlockRemoteComponent},
+                    {path: "todo-ws", component: TodoBlockWSComponent},
                     {path: "", component: Hello2Component }
                   ]),
                   HttpModule
@@ -33,6 +36,7 @@ import { WebSocketService } from './shared/websocket.service'
                   Hello2Component, 
                   TodoBlockComponent,
                   TodoBlockRemoteComponent,
+                  TodoBlockWSComponent,
                   TodoItemComponent,
                   NewItemFormComponent
                 ],
