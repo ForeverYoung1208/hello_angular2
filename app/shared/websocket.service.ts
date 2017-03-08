@@ -75,7 +75,7 @@ export class ChannelWebsocketService {
     return JSON.parse( identifier );
   }
 
-  private static getDataString( parameters:Object ):string{
+  private static getDataString( parameters:Object, action:String = null ):string{
     let first = true,
       result = '';
 
@@ -87,6 +87,11 @@ export class ChannelWebsocketService {
         result += `, \"${ key }\":\"${ parameters[ key ] }\"`;
       }
     }
+
+    if (action){
+      result += `, \"action\":\"${ action }\"`;
+    }
+
     return `{ ${ result } }`;
   }
 
@@ -139,12 +144,12 @@ export class ChannelWebsocketService {
   }
     
 
-  public send( data: Object ){
+  public sendToAction( data: Object, action:String = null ){
 
     this.websocketService.sendMessage( JSON.stringify( {
       command:'message',
       identifier: this.identifierStr,
-      data: ChannelWebsocketService.getDataString( data )
+      data: ChannelWebsocketService.getDataString( data, action )
     } ) );
 
   }

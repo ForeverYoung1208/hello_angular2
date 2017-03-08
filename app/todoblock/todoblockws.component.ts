@@ -6,43 +6,45 @@ import { WebSocketService } from './../shared/websocket.service'
 
 
 @Component({
-	moduleId: module.id,
+  moduleId: module.id,
   selector: 'todoblockws',
   templateUrl: 'todoblockws.component.html',
-  styleUrls: ['todoblockws.component.css']	
+  styleUrls: ['todoblockws.component.css']  
 })
 
 export class TodoBlockWSComponent implements OnInit{
-	items: Array<TodoItem> = [];
-	constructor( public listItemsService: TodoListWSService, private webSocketService: WebSocketService) {
- 		this.webSocketService.start( MyConfig.apiProtocolWS+MyConfig.apiAddress+MyConfig.cableSuffix );
-    this.listItemsService.subscribed.subscribe( ( data:boolean ) => {
-	    if( data ){
-	        this.getAllItems();
-    	}
-		} ); 		
+  items: Array<TodoItem> = [];
+  constructor( public listItemsService: TodoListWSService, private webSocketService: WebSocketService) {
+    this.webSocketService.start( MyConfig.apiProtocolWS+MyConfig.apiAddress+MyConfig.cableSuffix );
+  //  this.listItemsService.subscribed.subscribe( ( data:boolean ) => {
+  //    if( data ){
+  //      this.getAllItems();
+  //    }
+  //  } );     
 
-	}
+  this.listItemsService.subscribed.subscribe();
+
+  }
 
   private getAllItems():void {
     this.listItemsService.send( { action: 'index' } );
-	}
+  }
 
 
-	ngOnInit(){
+  ngOnInit(){
 
-	}
+  }
 
-	refreshItems(){
-	}
+  refreshItems(){
+  }
 
-	removeItem( item:TodoItem){
-	}
+  removeItem( item:TodoItem){
+  }
 
 
-	updateItem (item: TodoItem){
+  updateItem (item: TodoItem){
 
-	}
+  }
 
 
 

@@ -14,16 +14,16 @@ var todolist_service_1 = require('./../shared/todolist.service');
 var websocket_service_1 = require('./../shared/websocket.service');
 var TodoBlockWSComponent = (function () {
     function TodoBlockWSComponent(listItemsService, webSocketService) {
-        var _this = this;
         this.listItemsService = listItemsService;
         this.webSocketService = webSocketService;
         this.items = [];
         this.webSocketService.start(myconfig_1.MyConfig.apiProtocolWS + myconfig_1.MyConfig.apiAddress + myconfig_1.MyConfig.cableSuffix);
-        this.listItemsService.subscribed.subscribe(function (data) {
-            if (data) {
-                _this.getAllItems();
-            }
-        });
+        //  this.listItemsService.subscribed.subscribe( ( data:boolean ) => {
+        //    if( data ){
+        //      this.getAllItems();
+        //    }
+        //  } );     
+        this.listItemsService.subscribed.subscribe();
     }
     TodoBlockWSComponent.prototype.getAllItems = function () {
         this.listItemsService.send({ action: 'index' });

@@ -27,6 +27,9 @@ var WSFormComponent = (function () {
         this.todoListWSService.addItem(Object.assign({}, this.newItem), function () { _this.listRefreshEvent.emit(); });
     };
     ;
+    WSFormComponent.prototype.onUpdate = function () {
+        this.todoListWSService.updateItem(Object.assign({}, this.newItem));
+    };
     __decorate([
         core_1.Output(), 
         __metadata('design:type', Object)

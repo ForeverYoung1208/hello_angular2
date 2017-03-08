@@ -27,6 +27,10 @@ export class WSFormComponent{
 		
 	};
 
+	onUpdate(){
+		this.todoListWSService.updateItem( Object.assign({}, this.newItem))
+	}
+
 
 }
 

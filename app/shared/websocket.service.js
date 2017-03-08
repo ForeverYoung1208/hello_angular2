@@ -68,7 +68,8 @@ var ChannelWebsocketService = (function () {
     ChannelWebsocketService.encodeIdentifier = function (identifier) {
         return JSON.parse(identifier);
     };
-    ChannelWebsocketService.getDataString = function (parameters) {
+    ChannelWebsocketService.getDataString = function (parameters, action) {
+        if (action === void 0) { action = null; }
         var first = true, result = '';
         for (var key in parameters) {
             if (first) {
@@ -78,6 +79,9 @@ var ChannelWebsocketService = (function () {
             else {
                 result += ", \"" + key + "\":\"" + parameters[key] + "\"";
             }
+        }
+        if (action) {
+            result += ", \"action\":\"" + action + "\"";
         }
         return "{ " + result + " }";
     };
@@ -124,11 +128,12 @@ var ChannelWebsocketService = (function () {
     ChannelWebsocketService.prototype.subscribe = function () {
         this.websocketService.sendMessage(this.getSubscribeString());
     };
-    ChannelWebsocketService.prototype.send = function (data) {
+    ChannelWebsocketService.prototype.sendToAction = function (data, action) {
+        if (action === void 0) { action = null; }
         this.websocketService.sendMessage(JSON.stringify({
             command: 'message',
             identifier: this.identifierStr,
-            data: ChannelWebsocketService.getDataString(data)
+            data: ChannelWebsocketService.getDataString(data, action)
         }));
     };
     ChannelWebsocketService.prototype.unsubscribe = function () {

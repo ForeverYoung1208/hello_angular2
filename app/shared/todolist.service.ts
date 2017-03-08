@@ -103,7 +103,7 @@ export class TodoListWSService extends ChannelWebsocketService{
   constructor(webSocketService: WebSocketService ) {
     super( webSocketService );
     this.identifier = {
-      channel: 'todos'
+      channel: 'TodosChannel'
     };
   }  
 
@@ -113,13 +113,15 @@ export class TodoListWSService extends ChannelWebsocketService{
   }
 
   addItem(newItem: TodoItem, callback:Function = null ) {
-    this.send(newItem);
+    this.sendToAction(newItem, 'create');
   };
 
   removeItemById( id: number, callback:Function = null ){
   };
 
   updateItem( item:TodoItem ) {
+    this.sendToAction(item, 'update');
+
   }
 
 

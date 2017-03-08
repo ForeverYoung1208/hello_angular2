@@ -112,14 +112,14 @@ var TodoListWSService = (function (_super) {
     function TodoListWSService(webSocketService) {
         _super.call(this, webSocketService);
         this.identifier = {
-            channel: 'todos'
+            channel: 'TodosChannel'
         };
     }
     TodoListWSService.prototype.getListData = function () {
     };
     TodoListWSService.prototype.addItem = function (newItem, callback) {
         if (callback === void 0) { callback = null; }
-        this.send(newItem);
+        this.sendToAction(newItem, 'create');
     };
     ;
     TodoListWSService.prototype.removeItemById = function (id, callback) {
@@ -127,6 +127,7 @@ var TodoListWSService = (function (_super) {
     };
     ;
     TodoListWSService.prototype.updateItem = function (item) {
+        this.sendToAction(item, 'update');
     };
     TodoListWSService = __decorate([
         core_1.Injectable(), 
