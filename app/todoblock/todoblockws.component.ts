@@ -27,7 +27,7 @@ export class TodoBlockWSComponent implements OnInit{
   }
 
   private getAllItems():void {
-    this.listItemsService.send( { action: 'index' } );
+    this.listItemsService.getItems();
   }
 
 

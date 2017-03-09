@@ -1,7 +1,15 @@
 Rails.application.configure do
 
   ###+
-  config.action_cable.allowed_request_origins = ['http://0.0.0.0:3000','http://0.0.0.0:3001','http://192.168.0.128:3001']
+  config.action_cable.allowed_request_origins = [
+    'http://0.0.0.0:3000',
+    'http://0.0.0.0:3001',
+    'http://localhost:3000',
+    'http://localhost:3001',
+    'http://192.168.0.128:3001',
+    'http://192.168.99.51:3000',
+    'http://192.168.99.51:3001'
+  ]
   ###
 
 

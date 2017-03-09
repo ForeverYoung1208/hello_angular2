@@ -26,7 +26,7 @@ var TodoBlockWSComponent = (function () {
         this.listItemsService.subscribed.subscribe();
     }
     TodoBlockWSComponent.prototype.getAllItems = function () {
-        this.listItemsService.send({ action: 'index' });
+        this.listItemsService.getItems();
     };
     TodoBlockWSComponent.prototype.ngOnInit = function () {
     };

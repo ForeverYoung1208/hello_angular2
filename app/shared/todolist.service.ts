@@ -108,8 +108,8 @@ export class TodoListWSService extends ChannelWebsocketService{
   }  
 
 
-  getListData(){
-    
+  getItems(){
+    this.sendToAction({}, 'index');
   }
 
   addItem(newItem: TodoItem, callback:Function = null ) {

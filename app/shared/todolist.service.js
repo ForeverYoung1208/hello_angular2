@@ -115,7 +115,8 @@ var TodoListWSService = (function (_super) {
             channel: 'TodosChannel'
         };
     }
-    TodoListWSService.prototype.getListData = function () {
+    TodoListWSService.prototype.getItems = function () {
+        this.sendToAction({}, 'index');
     };
     TodoListWSService.prototype.addItem = function (newItem, callback) {
         if (callback === void 0) { callback = null; }
