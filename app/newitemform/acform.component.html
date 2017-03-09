@@ -1,0 +1,11 @@
+<!-- form  class="block" (ngSubmit)="onAddItem()" -->
+
+	<input type="text" name="newCaption" [(ngModel)]="newItem.caption" required />
+
+
+	<button (click)="onAddItem()"> Добавить на сервер  Action cable </button>
+	<button (click)="onUpdate()"> Update </button>
+
+	{{ newItem.caption }}
+
+<!-- /form -->

@@ -137,4 +137,26 @@ var TodoListWSService = (function (_super) {
     return TodoListWSService;
 }(websocket_service_1.ChannelWebsocketService));
 exports.TodoListWSService = TodoListWSService;
+var TodoListACService = (function () {
+    function TodoListACService() {
+    }
+    TodoListACService.prototype.getItems = function () {
+    };
+    TodoListACService.prototype.addItem = function (newItem, callback) {
+        if (callback === void 0) { callback = null; }
+    };
+    ;
+    TodoListACService.prototype.removeItemById = function (id, callback) {
+        if (callback === void 0) { callback = null; }
+    };
+    ;
+    TodoListACService.prototype.updateItem = function (item) {
+    };
+    TodoListACService = __decorate([
+        core_1.Injectable(), 
+        __metadata('design:paramtypes', [])
+    ], TodoListACService);
+    return TodoListACService;
+}());
+exports.TodoListACService = TodoListACService;
 //# sourceMappingURL=todolist.service.js.map

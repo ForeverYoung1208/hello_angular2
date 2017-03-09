@@ -30,7 +30,8 @@
     "latest-version": "^3.0.0",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",
-    "zone.js": "^0.7.4"
+    "zone.js": "^0.7.4",
+    "actioncable-js": ""
   },
   "devDependencies": {
     "concurrently": "^3.1.0",

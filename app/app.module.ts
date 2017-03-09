@@ -12,12 +12,14 @@ import { Hello2Component }  from './hello2/hello2.component';
 import { TodoBlockComponent }  from './todoblock/todoblock.component';
 import { TodoBlockRemoteComponent }  from './todoblock/todoblockremote.component';
 import { TodoBlockWSComponent }  from './todoblock/todoblockws.component';
+import { TodoBlockACComponent }  from './todoblock/todoblockac.component';
 import { WSFormComponent }  from './newitemform/wsform.component';
+import { ACFormComponent }  from './newitemform/acform.component';
 
 
 import { TodoItemComponent }  from './todoitem/todoitem.component';
 import { NewItemFormComponent }  from './newitemform/newitemform.component';
-import { TodoListService, TodoListLocalService, TodoListRemoteService, TodoListWSService } from './shared/todolist.service'
+import { TodoListService, TodoListLocalService, TodoListRemoteService, TodoListWSService, TodoListACService } from './shared/todolist.service'
 import { WebSocketService, ChannelWebsocketService } from './shared/websocket.service'
 
 
@@ -29,6 +31,7 @@ import { WebSocketService, ChannelWebsocketService } from './shared/websocket.se
                     {path: "todo-frontend", component: TodoBlockComponent},
                     {path: "todo-backend", component: TodoBlockRemoteComponent},
                     {path: "todo-ws", component: TodoBlockWSComponent},
+                    {path: "todo-ac", component: TodoBlockACComponent},
                     {path: "", component: Hello2Component }
                   ]),
                   HttpModule                 
@@ -39,13 +42,16 @@ import { WebSocketService, ChannelWebsocketService } from './shared/websocket.se
                   TodoBlockComponent,
                   TodoBlockRemoteComponent,
                   TodoBlockWSComponent,
+                  TodoBlockACComponent,
                   WSFormComponent,
+                  ACFormComponent,
                   TodoItemComponent,
                   NewItemFormComponent
                 ],
   providers:  [ TodoListLocalService, 
                 TodoListRemoteService,
                 TodoListWSService,
+                TodoListACService,
                 WebSocketService,
                 ChannelWebsocketService
               ],

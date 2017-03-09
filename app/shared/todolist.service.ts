@@ -121,7 +121,32 @@ export class TodoListWSService extends ChannelWebsocketService{
 
   updateItem( item:TodoItem ) {
     this.sendToAction(item, 'update');
+  }
+}
 
+
+
+
+
+
+
+
+
+
+@Injectable()
+export class TodoListACService{
+
+  constructor() { }  
+
+  getItems(){
+  }
+
+  addItem(newItem: TodoItem, callback:Function = null ) {
+  };
+  removeItemById( id: number, callback:Function = null ){
+  };
+
+  updateItem( item:TodoItem ) {
   }
 
 

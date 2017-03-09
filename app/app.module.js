@@ -19,7 +19,9 @@ var hello2_component_1 = require('./hello2/hello2.component');
 var todoblock_component_1 = require('./todoblock/todoblock.component');
 var todoblockremote_component_1 = require('./todoblock/todoblockremote.component');
 var todoblockws_component_1 = require('./todoblock/todoblockws.component');
+var todoblockac_component_1 = require('./todoblock/todoblockac.component');
 var wsform_component_1 = require('./newitemform/wsform.component');
+var acform_component_1 = require('./newitemform/acform.component');
 var todoitem_component_1 = require('./todoitem/todoitem.component');
 var newitemform_component_1 = require('./newitemform/newitemform.component');
 var todolist_service_1 = require('./shared/todolist.service');
@@ -35,6 +37,7 @@ var AppModule = (function () {
                     { path: "todo-frontend", component: todoblock_component_1.TodoBlockComponent },
                     { path: "todo-backend", component: todoblockremote_component_1.TodoBlockRemoteComponent },
                     { path: "todo-ws", component: todoblockws_component_1.TodoBlockWSComponent },
+                    { path: "todo-ac", component: todoblockac_component_1.TodoBlockACComponent },
                     { path: "", component: hello2_component_1.Hello2Component }
                 ]),
                 http_1.HttpModule
@@ -45,13 +48,16 @@ var AppModule = (function () {
                 todoblock_component_1.TodoBlockComponent,
                 todoblockremote_component_1.TodoBlockRemoteComponent,
                 todoblockws_component_1.TodoBlockWSComponent,
+                todoblockac_component_1.TodoBlockACComponent,
                 wsform_component_1.WSFormComponent,
+                acform_component_1.ACFormComponent,
                 todoitem_component_1.TodoItemComponent,
                 newitemform_component_1.NewItemFormComponent
             ],
             providers: [todolist_service_1.TodoListLocalService,
                 todolist_service_1.TodoListRemoteService,
                 todolist_service_1.TodoListWSService,
+                todolist_service_1.TodoListACService,
                 websocket_service_1.WebSocketService,
                 websocket_service_1.ChannelWebsocketService
             ],
