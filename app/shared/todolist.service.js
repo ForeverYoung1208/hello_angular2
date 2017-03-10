@@ -19,6 +19,7 @@ var http_1 = require('@angular/http');
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
 var myconfig_1 = require('./myconfig');
+var ng2_cable_1 = require('ng2-cable');
 var TodoListLocalService = (function () {
     function TodoListLocalService() {
         this.items = todolistdata_1.todoListData;
@@ -138,7 +139,11 @@ var TodoListWSService = (function (_super) {
 }(websocket_service_1.ChannelWebsocketService));
 exports.TodoListWSService = TodoListWSService;
 var TodoListACService = (function () {
-    function TodoListACService() {
+    function TodoListACService(ng2cable, broadcaster) {
+        this.ng2cable = ng2cable;
+        this.broadcaster = broadcaster;
+        this.url = myconfig_1.MyConfig.apiUrl + myconfig_1.MyConfig.cableSuffix;
+        this.ng2cable.subscribe(this.url, myconfig_1.MyConfig.channel);
     }
     TodoListACService.prototype.getItems = function () {
     };
@@ -154,7 +159,7 @@ var TodoListACService = (function () {
     };
     TodoListACService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [ng2_cable_1.Ng2Cable, ng2_cable_1.Broadcaster])
     ], TodoListACService);
     return TodoListACService;
 }());

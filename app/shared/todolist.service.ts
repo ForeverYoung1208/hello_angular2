@@ -7,7 +7,7 @@ import { Http, Response, Headers } from '@angular/http';
 import { todoListData, todoListData2 } from './todolistdata';
 import { TodoItem } from './todoitem';
 import { MyConfig } from './myconfig'
-import { ActionCable } from 'actioncable-js/index.js';
+import { Ng2Cable, Broadcaster } from 'ng2-cable';
 
 
 export interface TodoListService{
@@ -102,6 +102,7 @@ export class TodoListRemoteService implements TodoListService {
 
 @Injectable()
 export class TodoListWSService extends ChannelWebsocketService{
+
   constructor(webSocketService: WebSocketService ) {
     super( webSocketService );
     this.identifier = {
@@ -137,8 +138,15 @@ export class TodoListWSService extends ChannelWebsocketService{
 
 @Injectable()
 export class TodoListACService{
+  private url:string = MyConfig.apiUrl+MyConfig.cableSuffix;
 
-  constructor() { }  
+  constructor(
+    private ng2cable: Ng2Cable,
+    private broadcaster: Broadcaster) 
+
+  { 
+    this.ng2cable.subscribe( this.url, MyConfig.channel);
+  }  
 
   getItems(){
   }
