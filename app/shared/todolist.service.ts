@@ -7,6 +7,8 @@ import { Http, Response, Headers } from '@angular/http';
 import { todoListData, todoListData2 } from './todolistdata';
 import { TodoItem } from './todoitem';
 import { MyConfig } from './myconfig'
+import { ActionCable } from 'actioncable-js/index.js';
+
 
 export interface TodoListService{
   getListData( )    :Array<TodoItem>;
