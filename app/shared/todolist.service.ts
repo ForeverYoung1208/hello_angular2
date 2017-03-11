@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { WebSocketService, ChannelWebsocketService } from './websocket.service'
+import * as ActionCable from 'actioncable';
+
 
 import { Http, Response, Headers } from '@angular/http';
 import { todoListData, todoListData2 } from './todolistdata';
 import { TodoItem } from './todoitem';
 import { MyConfig } from './myconfig'
+
 import { Ng2Cable, Broadcaster } from 'ng2-cable';
 
 
@@ -139,14 +142,29 @@ export class TodoListWSService extends ChannelWebsocketService{
 @Injectable()
 export class TodoListACService{
   private url:string = MyConfig.apiUrl+MyConfig.cableSuffix;
+  private cable:any;
+  private subscription:any;
 
   constructor(
-    private ng2cable: Ng2Cable,
-    private broadcaster: Broadcaster) 
-
+    private ng2cable: Ng2Cable
+    // private broadcaster: Broadcaster
+  ) 
   { 
+    console.log(this.url)
     this.ng2cable.subscribe( this.url, MyConfig.channel);
   }  
+
+
+  subscribe(url:string, channel:string){
+    this.cable = ActionCable.createConsumer(url)
+
+    this.subscription = this.cable.subscriptions.create(channel, {
+      received: (data:any) => {
+        console.log('!!!!!!!! ' + data)
+      }
+    }
+  }
+
 
   getItems(){
   }

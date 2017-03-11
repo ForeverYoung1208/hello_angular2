@@ -1,12 +1,12 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
-import { TodoListWSService } from './../shared/todolist.service'
+import { TodoListACService } from './../shared/todolist.service'
 
 
 @Component({
 	moduleId: module.id,
   selector: 'acform',
-  templateUrl: 'wsform.component.html',
+  templateUrl: 'acform.component.html',
   styleUrls: ['newitemform.component.css']	
 })
 export class ACFormComponent{

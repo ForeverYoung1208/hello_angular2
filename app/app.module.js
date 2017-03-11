@@ -13,6 +13,7 @@ var platform_browser_1 = require('@angular/platform-browser');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
 var http_1 = require('@angular/http');
+var ng2_cable_1 = require('ng2-cable');
 var app_component_1 = require('./app.component');
 var todomenu_component_1 = require('./todomenu/todomenu.component');
 var hello2_component_1 = require('./hello2/hello2.component');
@@ -59,7 +60,8 @@ var AppModule = (function () {
                 todolist_service_1.TodoListWSService,
                 todolist_service_1.TodoListACService,
                 websocket_service_1.WebSocketService,
-                websocket_service_1.ChannelWebsocketService
+                websocket_service_1.ChannelWebsocketService,
+                ng2_cable_1.Ng2Cable
             ],
             bootstrap: [app_component_1.AppComponent]
         }), 

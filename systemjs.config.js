@@ -23,9 +23,20 @@
       '@angular/router': 'npm:@angular/router/bundles/router.umd.js',
       '@angular/forms': 'npm:@angular/forms/bundles/forms.umd.js',
 
+
+      ///my
+      // 'ng2-cable': 'npm:ng2-cable/js/index.js',
+      'ng2-cable':    'npm:ng2-cable/js/ng2-cable.js',
+      'broadcaster':  'npm:ng2-cable/js/broadcaster.js',
+      'actioncable':  'npm:actioncable/lib/assets/compiled/action_cable.js',
+
       // other libraries
       'rxjs':                      'npm:rxjs',
       'angular-in-memory-web-api': 'npm:angular-in-memory-web-api/bundles/in-memory-web-api.umd.js'
+
+
+
+
     },
     // packages tells the System loader how to load when no filename and/or no extension
     packages: {

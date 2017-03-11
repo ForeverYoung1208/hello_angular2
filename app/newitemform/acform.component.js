@@ -33,7 +33,7 @@ var ACFormComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'acform',
-            templateUrl: 'wsform.component.html',
+            templateUrl: 'acform.component.html',
             styleUrls: ['newitemform.component.css']
         }), 
         __metadata('design:paramtypes', [])

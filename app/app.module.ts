@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http'
+import { Ng2Cable, Broadcaster } from 'ng2-cable';
 
 import { AppComponent }  from './app.component';
 
@@ -53,7 +54,8 @@ import { WebSocketService, ChannelWebsocketService } from './shared/websocket.se
                 TodoListWSService,
                 TodoListACService,
                 WebSocketService,
-                ChannelWebsocketService
+                ChannelWebsocketService,
+                Ng2Cable
               ],
   bootstrap: [ AppComponent ]
 })
