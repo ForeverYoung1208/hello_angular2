@@ -9,13 +9,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var todolist_service_1 = require('./../shared/todolist.service');
 var TodoBlockACComponent = (function () {
-    function TodoBlockACComponent() {
+    function TodoBlockACComponent(listItemsService) {
+        this.listItemsService = listItemsService;
         this.items = [];
     }
     TodoBlockACComponent.prototype.getAllItems = function () {
     };
     TodoBlockACComponent.prototype.ngOnInit = function () {
+        this.listItemsService.subscribe();
     };
     TodoBlockACComponent.prototype.refreshItems = function () {
     };
@@ -30,7 +33,7 @@ var TodoBlockACComponent = (function () {
             templateUrl: 'todoblockac.component.html',
             styleUrls: ['todoblockac.component.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [todolist_service_1.TodoListACService])
     ], TodoBlockACComponent);
     return TodoBlockACComponent;
 }());

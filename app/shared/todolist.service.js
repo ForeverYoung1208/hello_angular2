@@ -15,12 +15,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var websocket_service_1 = require('./websocket.service');
-var ActionCable = require('actioncable');
 var http_1 = require('@angular/http');
 var todolistdata_1 = require('./todolistdata');
 var todoitem_1 = require('./todoitem');
 var myconfig_1 = require('./myconfig');
-var ng2_cable_1 = require('ng2-cable');
 var TodoListLocalService = (function () {
     function TodoListLocalService() {
         this.items = todolistdata_1.todoListData;
@@ -140,21 +138,25 @@ var TodoListWSService = (function (_super) {
 }(websocket_service_1.ChannelWebsocketService));
 exports.TodoListWSService = TodoListWSService;
 var TodoListACService = (function () {
-    function TodoListACService(ng2cable) {
-        this.ng2cable = ng2cable;
+    function TodoListACService() {
         this.url = myconfig_1.MyConfig.apiUrl + myconfig_1.MyConfig.cableSuffix;
-        console.log(this.url);
-        this.ng2cable.subscribe(this.url, myconfig_1.MyConfig.channel);
+        this.channel = myconfig_1.MyConfig.channel;
+        this.ActionCable = require('actioncable');
+        console.log('constructor ' + this.url);
+        this.cable = this.ActionCable.createConsumer(this.url);
     }
     TodoListACService.prototype.subscribe = function (url, channel) {
-        this.cable = ActionCable.createConsumer(url);
+        if (url === void 0) { url = this.url; }
+        if (channel === void 0) { channel = this.channel; }
+        console.log('subscribe ' + url);
         this.subscription = this.cable.subscriptions.create(channel, {
             received: function (data) {
-                console.log('!!!!!!!! ' + data);
+                console.log('!!!!got!!!! ' + data);
             }
         });
     };
     TodoListACService.prototype.getItems = function () {
+        console.log('Get items');
     };
     TodoListACService.prototype.addItem = function (newItem, callback) {
         if (callback === void 0) { callback = null; }
@@ -168,7 +170,7 @@ var TodoListACService = (function () {
     };
     TodoListACService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [ng2_cable_1.Ng2Cable])
+        __metadata('design:paramtypes', [])
     ], TodoListACService);
     return TodoListACService;
 }());

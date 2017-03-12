@@ -1,6 +1,7 @@
 import { MyConfig } from './../shared/myconfig'
 import { Component, OnInit } from '@angular/core';
 import { TodoItem } from './../shared/todoitem';
+import { TodoListACService } from './../shared/todolist.service'
 
 
 @Component({
@@ -12,13 +13,20 @@ import { TodoItem } from './../shared/todoitem';
 
 export class TodoBlockACComponent implements OnInit{
   items: Array<TodoItem> = [];
-  constructor() {  }
+  constructor(
+    public listItemsService: TodoListACService
+  ) {
+
+
+  }
 
   private getAllItems():void {
+
   }
 
 
   ngOnInit(){
+    this.listItemsService.subscribe()
 
   }
 

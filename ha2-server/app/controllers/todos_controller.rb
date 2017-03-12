@@ -4,11 +4,6 @@ class TodosController < ApplicationController
   # GET /todos
   def index
     @todos = Todo.all
-
-    ActionCable.server.broadcast 'todos',
-      caption: @todos[0].caption,
-      duration: @todos[0].duration
-
     render json: @todos
   end
 

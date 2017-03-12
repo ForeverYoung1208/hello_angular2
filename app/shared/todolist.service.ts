@@ -2,15 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 
 import { WebSocketService, ChannelWebsocketService } from './websocket.service'
-import * as ActionCable from 'actioncable';
 
 
 import { Http, Response, Headers } from '@angular/http';
 import { todoListData, todoListData2 } from './todolistdata';
 import { TodoItem } from './todoitem';
 import { MyConfig } from './myconfig'
-
-import { Ng2Cable, Broadcaster } from 'ng2-cable';
 
 
 export interface TodoListService{
@@ -103,6 +100,9 @@ export class TodoListRemoteService implements TodoListService {
 
 
 
+
+
+
 @Injectable()
 export class TodoListWSService extends ChannelWebsocketService{
 
@@ -142,35 +142,39 @@ export class TodoListWSService extends ChannelWebsocketService{
 @Injectable()
 export class TodoListACService{
   private url:string = MyConfig.apiUrl+MyConfig.cableSuffix;
+  private channel:string = MyConfig.channel;
   private cable:any;
   private subscription:any;
+  ActionCable = require('actioncable')
 
-  constructor(
-    private ng2cable: Ng2Cable
-    // private broadcaster: Broadcaster
-  ) 
+  constructor( ) 
   { 
-    console.log(this.url)
-    this.ng2cable.subscribe( this.url, MyConfig.channel);
+      console.log( 'constructor ' + this.url)
+      this.cable = this.ActionCable.createConsumer(this.url)
+
   }  
 
 
-  subscribe(url:string, channel:string){
-    this.cable = ActionCable.createConsumer(url)
+  subscribe(url:string = this.url, channel:string = this.channel){
+    console.log( 'subscribe ' + url)
 
     this.subscription = this.cable.subscriptions.create(channel, {
       received: (data:any) => {
-        console.log('!!!!!!!! ' + data)
+        console.log('!!!!got!!!! ' + data)
       }
-    }
+    })
   }
 
 
   getItems(){
+    console.log( 'Get items')
+
   }
 
   addItem(newItem: TodoItem, callback:Function = null ) {
+
   };
+
   removeItemById( id: number, callback:Function = null ){
   };
 

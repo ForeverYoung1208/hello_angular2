@@ -25,9 +25,6 @@
 
 
       ///my
-      // 'ng2-cable': 'npm:ng2-cable/js/index.js',
-      'ng2-cable':    'npm:ng2-cable/js/ng2-cable.js',
-      'broadcaster':  'npm:ng2-cable/js/broadcaster.js',
       'actioncable':  'npm:actioncable/lib/assets/compiled/action_cable.js',
 
       // other libraries
