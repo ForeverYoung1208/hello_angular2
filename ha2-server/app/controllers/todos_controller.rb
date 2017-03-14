@@ -4,6 +4,7 @@ class TodosController < ApplicationController
   # GET /todos
   def index
     @todos = Todo.all
+
     render json: @todos
   end
 
@@ -18,8 +19,12 @@ class TodosController < ApplicationController
 
     if @todo.save
       ActionCable.server.broadcast 'todos',
-        caption: @todo.caption,
-        duration: @todo.duration
+        todos: [@todo],
+        action: 'show'
+        # caption: @todo.caption,
+        # duration: @todo.duration,
+        # isDone: @todo.isDone,
+        # id:@todo.id
 
       render json: @todo, status: :created, location: @todo
     else

@@ -138,25 +138,30 @@ var TodoListWSService = (function (_super) {
 }(websocket_service_1.ChannelWebsocketService));
 exports.TodoListWSService = TodoListWSService;
 var TodoListACService = (function () {
-    function TodoListACService() {
-        this.url = myconfig_1.MyConfig.apiUrl + myconfig_1.MyConfig.cableSuffix;
+    function TodoListACService(http) {
+        this.http = http;
+        this.apiUrl = myconfig_1.MyConfig.apiUrl;
+        this.cableUrl = myconfig_1.MyConfig.apiUrl + myconfig_1.MyConfig.cableSuffix;
         this.channel = myconfig_1.MyConfig.channel;
         this.ActionCable = require('actioncable');
-        console.log('constructor ' + this.url);
-        this.cable = this.ActionCable.createConsumer(this.url);
+        this.cable = this.ActionCable.createConsumer(this.cableUrl);
     }
-    TodoListACService.prototype.subscribe = function (url, channel) {
-        if (url === void 0) { url = this.url; }
+    TodoListACService.prototype.subscribeToChanges = function (callback, channel) {
         if (channel === void 0) { channel = this.channel; }
-        console.log('subscribe ' + url);
         this.subscription = this.cable.subscriptions.create(channel, {
             received: function (data) {
-                console.log('!!!!got!!!! ' + data);
+                callback(data);
             }
         });
     };
-    TodoListACService.prototype.getItems = function () {
-        console.log('Get items');
+    TodoListACService.prototype.getItems = function (callback) {
+        this.http.get(this.apiUrl + '/todos').subscribe(function (result) {
+            var items = result.json();
+            if (callback) {
+                callback(items);
+            }
+            ;
+        }, function (error) { return console.log(error.statusText); });
     };
     TodoListACService.prototype.addItem = function (newItem, callback) {
         if (callback === void 0) { callback = null; }
@@ -170,7 +175,7 @@ var TodoListACService = (function () {
     };
     TodoListACService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [http_1.Http])
     ], TodoListACService);
     return TodoListACService;
 }());

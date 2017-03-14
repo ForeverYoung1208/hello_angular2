@@ -15,10 +15,32 @@ var TodoBlockACComponent = (function () {
         this.listItemsService = listItemsService;
         this.items = [];
     }
+    TodoBlockACComponent.prototype.subscribeToCable = function () {
+        var _this = this;
+        this.listItemsService.subscribeToChanges(function (data) {
+            switch (data.action) {
+                case "show": {
+                    data.todos.forEach(function (item) {
+                        var newItem = {
+                            id: item.id,
+                            caption: item.caption,
+                            isDone: item.isDone,
+                            duration: item.duration
+                        };
+                        _this.items.push(newItem);
+                    });
+                    break;
+                }
+            }
+        });
+    };
     TodoBlockACComponent.prototype.getAllItems = function () {
+        var _this = this;
+        this.listItemsService.getItems(function (items) { _this.items = items; });
     };
     TodoBlockACComponent.prototype.ngOnInit = function () {
-        this.listItemsService.subscribe();
+        this.getAllItems();
+        this.subscribeToCable();
     };
     TodoBlockACComponent.prototype.refreshItems = function () {
     };

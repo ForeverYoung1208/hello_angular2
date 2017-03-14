@@ -141,41 +141,50 @@ export class TodoListWSService extends ChannelWebsocketService{
 
 @Injectable()
 export class TodoListACService{
-  private url:string = MyConfig.apiUrl+MyConfig.cableSuffix;
+  private apiUrl:string = MyConfig.apiUrl;  
+  private cableUrl:string = MyConfig.apiUrl+MyConfig.cableSuffix;
   private channel:string = MyConfig.channel;
   private cable:any;
   private subscription:any;
   ActionCable = require('actioncable')
 
-  constructor( ) 
+  constructor(
+    public http:Http  
+  ) 
   { 
-      console.log( 'constructor ' + this.url)
-      this.cable = this.ActionCable.createConsumer(this.url)
+    this.cable = this.ActionCable.createConsumer(this.cableUrl)
 
   }  
 
 
-  subscribe(url:string = this.url, channel:string = this.channel){
-    console.log( 'subscribe ' + url)
+  subscribeToChanges(callback:Function, channel:string = this.channel){
 
     this.subscription = this.cable.subscriptions.create(channel, {
       received: (data:any) => {
-        console.log('!!!!got!!!! ' + data)
+        callback( data );
       }
     })
   }
 
 
-  getItems(){
-    console.log( 'Get items')
-
+  getItems( callback:Function ){
+    this.http.get(this.apiUrl+'/todos').subscribe(
+      result => { 
+                  let items:Array<TodoItem> = result.json() as Array<TodoItem>
+                  if ( callback ) { callback(items) };
+                },
+      error => console.log( error.statusText )
+    )
   }
+
+
 
   addItem(newItem: TodoItem, callback:Function = null ) {
 
   };
 
   removeItemById( id: number, callback:Function = null ){
+
   };
 
   updateItem( item:TodoItem ) {
