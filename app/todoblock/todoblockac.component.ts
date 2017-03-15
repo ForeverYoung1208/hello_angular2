@@ -15,9 +15,10 @@ export class TodoBlockACComponent implements OnInit{
   items: Array<TodoItem> = [];
   constructor(
     public listItemsService: TodoListACService
-  ) {
+  ) { }
 
-
+  private findItemById(id:number):TodoItem {
+    return
   }
 
 
@@ -46,10 +47,22 @@ export class TodoBlockACComponent implements OnInit{
                 return true 
               }
             } )
-            
-
+            this.items.splice(i,1)
           } )
-          
+          break;
+        }
+
+        case "uptade": {
+          data.todos.forEach( (itemToUpdate:any)=>{
+            let i = this.items.findIndex( (item)=>{ 
+              if (item.id == itemToUpdate.id ) {
+                return true 
+              }
+            } )
+            this.items[i].caption = itemToUpdate.caption
+            this.items[i].isDone = itemToUpdate.isDone
+            this.items[i].duration = itemToUpdate.duration 
+          } )
           break;
         }
 

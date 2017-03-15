@@ -15,6 +15,9 @@ var TodoBlockACComponent = (function () {
         this.listItemsService = listItemsService;
         this.items = [];
     }
+    TodoBlockACComponent.prototype.findItemById = function (id) {
+        return;
+    };
     TodoBlockACComponent.prototype.subscribeToCable = function () {
         var _this = this;
         this.listItemsService.subscribeToChanges(function (data) {
@@ -38,6 +41,20 @@ var TodoBlockACComponent = (function () {
                                 return true;
                             }
                         });
+                        _this.items.splice(i, 1);
+                    });
+                    break;
+                }
+                case "uptade": {
+                    data.todos.forEach(function (itemToUpdate) {
+                        var i = _this.items.findIndex(function (item) {
+                            if (item.id == itemToUpdate.id) {
+                                return true;
+                            }
+                        });
+                        _this.items[i].caption = itemToUpdate.caption;
+                        _this.items[i].isDone = itemToUpdate.isDone;
+                        _this.items[i].duration = itemToUpdate.duration;
                     });
                     break;
                 }

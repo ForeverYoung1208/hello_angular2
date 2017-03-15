@@ -21,10 +21,7 @@ class TodosController < ApplicationController
       ActionCable.server.broadcast 'todos',
         todos: [@todo],
         action: 'show'
-        # caption: @todo.caption,
-        # duration: @todo.duration,
-        # isDone: @todo.isDone,
-        # id:@todo.id
+
 
       render json: @todo, status: :created, location: @todo
     else
@@ -46,6 +43,10 @@ class TodosController < ApplicationController
   # DELETE /todos/1
   def destroy
     @todo.destroy
+    ActionCable.server.broadcast 'todos',
+      todos: [@todo],
+      action: 'remove'
+
   end
 
   private
