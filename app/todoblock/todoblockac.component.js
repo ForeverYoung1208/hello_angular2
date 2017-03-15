@@ -31,6 +31,16 @@ var TodoBlockACComponent = (function () {
                     });
                     break;
                 }
+                case "remove": {
+                    data.todos.forEach(function (itemToRemove) {
+                        var i = _this.items.findIndex(function (item) {
+                            if (item.id == itemToRemove.id) {
+                                return true;
+                            }
+                        });
+                    });
+                    break;
+                }
             }
         });
     };

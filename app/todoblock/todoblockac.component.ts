@@ -38,6 +38,21 @@ export class TodoBlockACComponent implements OnInit{
           
           break;
         }
+
+        case "remove": {
+          data.todos.forEach( (itemToRemove:any)=>{
+            let i = this.items.findIndex( (item)=>{ 
+              if (item.id == itemToRemove.id ) {
+                return true 
+              }
+            } )
+            
+
+          } )
+          
+          break;
+        }
+
       }
     } )    
   }
