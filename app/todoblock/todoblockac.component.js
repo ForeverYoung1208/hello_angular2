@@ -15,12 +15,9 @@ var TodoBlockACComponent = (function () {
         this.listItemsService = listItemsService;
         this.items = [];
     }
-    TodoBlockACComponent.prototype.findItemById = function (id) {
-        return;
-    };
-    TodoBlockACComponent.prototype.subscribeToCable = function () {
+    TodoBlockACComponent.prototype.subscribeToCable = function (subscriber) {
         var _this = this;
-        this.listItemsService.subscribeToChanges(function (data) {
+        this.listItemsService.subscribeToChanges(this.channelUser, function (data) {
             switch (data.action) {
                 case "show": {
                     data.todos.forEach(function (item) {
@@ -45,7 +42,7 @@ var TodoBlockACComponent = (function () {
                     });
                     break;
                 }
-                case "uptade": {
+                case "update": {
                     data.todos.forEach(function (itemToUpdate) {
                         var i = _this.items.findIndex(function (item) {
                             if (item.id == itemToUpdate.id) {
@@ -65,9 +62,14 @@ var TodoBlockACComponent = (function () {
         var _this = this;
         this.listItemsService.getItems(function (items) { _this.items = items; });
     };
+    TodoBlockACComponent.prototype.setUser = function () {
+        if (this.user || this.user.length > 0) {
+            this.channelUser = this.user;
+            this.getAllItems();
+            this.subscribeToCable(this.channelUser);
+        }
+    };
     TodoBlockACComponent.prototype.ngOnInit = function () {
-        this.getAllItems();
-        this.subscribeToCable();
     };
     TodoBlockACComponent.prototype.refreshItems = function () {
     };

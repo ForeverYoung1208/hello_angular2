@@ -157,13 +157,20 @@ export class TodoListACService{
   }  
 
 
-  subscribeToChanges(callback:Function, channel:string = this.channel){
+  subscribeToChanges(channelUser:string, callback:Function, channel:string = this.channel){
 
-    this.subscription = this.cable.subscriptions.create(channel, {
-      received: (data:any) => {
-        callback( data );
+    this.subscription = this.cable.subscriptions.create(
+      {
+        'channel': channel,
+        'channelUser': channelUser
+      },
+      {
+        received: (data:any) => {
+          callback( data );
+        }
       }
-    })
+    )
+
   }
 
 

@@ -2,7 +2,7 @@ class TodosChannel < ApplicationCable::Channel
 
 
 	def subscribed
-		stream_from 'todos'
+		stream_from "channelUser_#{params[:channelUser]}"
 	end
 
 	def index

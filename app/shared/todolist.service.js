@@ -146,9 +146,12 @@ var TodoListACService = (function () {
         this.ActionCable = require('actioncable');
         this.cable = this.ActionCable.createConsumer(this.cableUrl);
     }
-    TodoListACService.prototype.subscribeToChanges = function (callback, channel) {
+    TodoListACService.prototype.subscribeToChanges = function (channelUser, callback, channel) {
         if (channel === void 0) { channel = this.channel; }
-        this.subscription = this.cable.subscriptions.create(channel, {
+        this.subscription = this.cable.subscriptions.create({
+            'channel': channel,
+            'channelUser': channelUser
+        }, {
             received: function (data) {
                 callback(data);
             }

@@ -13,17 +13,15 @@ import { TodoListACService } from './../shared/todolist.service'
 
 export class TodoBlockACComponent implements OnInit{
   items: Array<TodoItem> = [];
+  user:string;
+  channelUser:string;
   constructor(
     public listItemsService: TodoListACService
   ) { }
 
-  private findItemById(id:number):TodoItem {
-    return
-  }
 
-
-  private subscribeToCable(){
-    this.listItemsService.subscribeToChanges( (data:any)=> {
+  private subscribeToCable( subscriber:string ){
+    this.listItemsService.subscribeToChanges( this.channelUser, (data:any)=> {
 
       switch (data.action){
         case "show": {
@@ -52,7 +50,7 @@ export class TodoBlockACComponent implements OnInit{
           break;
         }
 
-        case "uptade": {
+        case "update": {
           data.todos.forEach( (itemToUpdate:any)=>{
             let i = this.items.findIndex( (item)=>{ 
               if (item.id == itemToUpdate.id ) {
@@ -75,11 +73,17 @@ export class TodoBlockACComponent implements OnInit{
 
   }
 
+  setUser(){
+    if (this.user || this.user.length>0){
+      this.channelUser = this.user;
+      this.getAllItems();
+      this.subscribeToCable( this.channelUser );
+
+    }
+  }
+
 
   ngOnInit(){
-    this.getAllItems();
-    this.subscribeToCable();
-
   }
 
   refreshItems(){

@@ -1,29 +1,36 @@
 <div class="todoblock">
-	<h2> With backend on AC  </h2>
-	<wsform (listRefreshEvent)="refreshItems()" ></wsform>
+	<h2> With backend on AC on {{listItemsService.cableUrl}} </h2>
 
-	<p>WebSocket AC todos</p>
+	<input [(ngModel)]="user"/><button (click) = "setUser()"> Set User and subscribe for a channel</button>
+	<br/>
+	<br/>
 
-
-	<li *ngFor="let item of items">
-
-
-		<todoitem 
-			[todoItem]="item" 
-			(deleteItemEvent)="removeItem($event)"
-			(updateItemEvent)="updateItem($event)"
-		></todoitem>
+	<div *ngIf="channelUser">
+		<wsform (listRefreshEvent)="refreshItems()" ></wsform>
 
 
-	</li>
+		<p>WebSocket AC todos for user {{channelUser}}</p>
 
-<br/>
 
-	<li *ngFor="let item of items">
-		{{item.caption}}
-		{{item.duration}}
-		{{item.isDone}}
+		<li *ngFor="let item of items">
 
-	</li>
 
+			<todoitem 
+				[todoItem]="item" 
+				(deleteItemEvent)="removeItem($event)"
+				(updateItemEvent)="updateItem($event)"
+			></todoitem>
+
+
+		</li>
+
+	<br/>
+
+		<li *ngFor="let item of items">
+			{{item.caption}}
+			{{item.duration}}
+			{{item.isDone}}
+
+		</li>
+	</div>
 </div>

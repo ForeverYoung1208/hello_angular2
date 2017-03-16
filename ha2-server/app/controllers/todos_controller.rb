@@ -34,6 +34,9 @@ class TodosController < ApplicationController
   # PATCH/PUT /todos/1
   def update
     if @todo.update(todo_params)
+      ActionCable.server.broadcast 'todos',
+        todos: [@todo],
+        action: 'update'      
       render json: @todo
     else
       render json: @todo.errors, status: :unprocessable_entity
