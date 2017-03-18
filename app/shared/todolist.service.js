@@ -147,15 +147,36 @@ var TodoListACService = (function () {
         this.cable = this.ActionCable.createConsumer(this.cableUrl);
     }
     TodoListACService.prototype.subscribeToChanges = function (channelUser, callback, channel) {
+        var _this = this;
         if (channel === void 0) { channel = this.channel; }
-        this.subscription = this.cable.subscriptions.create({
-            'channel': channel,
-            'channelUser': channelUser
-        }, {
-            received: function (data) {
-                callback(data);
-            }
+        var params = new http_1.URLSearchParams();
+        params.set('channelUser', channelUser);
+        this.http.get(this.apiUrl + '/subscribe_to_ws', { search: params }).subscribe(function (result) {
+            console.log('result');
+            console.log(result);
+            _this.subscription = _this.cable.subscriptions.create({
+                'channel': channel,
+                'channelUser': channelUser
+            }, {
+                received: function (data) {
+                    callback(data);
+                }
+            });
+        }, function (error) {
+            console.log('error');
+            console.log(error);
         });
+        // this.subscription = this.cable.subscriptions.create(
+        //   {
+        //     'channel': channel,
+        //     'channelUser': channelUser
+        //   },
+        //   {
+        //     received: (data:any) => {
+        //       callback( data );
+        //     }
+        //   }
+        // )
     };
     TodoListACService.prototype.getItems = function (callback) {
         this.http.get(this.apiUrl + '/todos').subscribe(function (result) {

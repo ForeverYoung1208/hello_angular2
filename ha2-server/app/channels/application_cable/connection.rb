@@ -1,10 +1,17 @@
 module ApplicationCable
   class Connection < ActionCable::Connection::Base
 
-    def connect
-  		logger.debug ' Connection < ActionCable::Connection::Base connect '
-  	end
+    identified_by :current_user
 
+    def connect
+      self.current_user = find_verified_user
+    end
+
+    private
+
+    def find_verified_user
+      cookies.signed[:user_name]
+    end
 
   end
 end

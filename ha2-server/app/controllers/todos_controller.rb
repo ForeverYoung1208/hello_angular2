@@ -49,7 +49,14 @@ class TodosController < ApplicationController
     ActionCable.server.broadcast 'todos',
       todos: [@todo],
       action: 'remove'
+  end
 
+  def subscribe_to_ws
+    if cookies.signed[:user_name] = params[:channelUser]
+      head :ok
+    else
+      head :unprocessable_entity
+    end
   end
 
   private

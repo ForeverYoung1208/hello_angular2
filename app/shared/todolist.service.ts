@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { WebSocketService, ChannelWebsocketService } from './websocket.service'
 
 
-import { Http, Response, Headers } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams } from '@angular/http';
 import { todoListData, todoListData2 } from './todolistdata';
 import { TodoItem } from './todoitem';
 import { MyConfig } from './myconfig'
@@ -159,17 +159,45 @@ export class TodoListACService{
 
   subscribeToChanges(channelUser:string, callback:Function, channel:string = this.channel){
 
-    this.subscription = this.cable.subscriptions.create(
-      {
-        'channel': channel,
-        'channelUser': channelUser
-      },
-      {
-        received: (data:any) => {
-          callback( data );
-        }
-      }
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('channelUser', channelUser);
+    
+    this.http.get(this.apiUrl+'/subscribe_to_ws', {  search: params } ).subscribe(
+      result => { 
+                  console.log( 'result' )
+                  console.log( result )
+                  this.subscription = this.cable.subscriptions.create(
+                    {
+                      'channel': channel,
+                      'channelUser': channelUser
+                    },
+                    {
+                      received: (data:any) => {
+                        callback( data );
+                      }
+                    }
+                  )
+
+                },
+      error => { 
+        console.log( 'error' )
+        console.log( error )
+      } 
     )
+
+
+
+    // this.subscription = this.cable.subscriptions.create(
+    //   {
+    //     'channel': channel,
+    //     'channelUser': channelUser
+    //   },
+    //   {
+    //     received: (data:any) => {
+    //       callback( data );
+    //     }
+    //   }
+    // )
 
   }
 
