@@ -2,6 +2,9 @@ class TodosChannel < ApplicationCable::Channel
 
 	def subscribed
 		stream_from "todos"
+  	ConnectedList.add(current_user)
+  	debugger
+  	
 	end
 
 	def index
@@ -20,8 +23,9 @@ class TodosChannel < ApplicationCable::Channel
   	logger.debug ' !!!!!!!!!!!!!!!!!! def receive(data )'
   end
 
-  def unsubscribed
-  end
+def unsubscribed
+  ConnectedList.remove(current_user)
+end
 
 end
 
