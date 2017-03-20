@@ -3,7 +3,7 @@ class TodosChannel < ApplicationCable::Channel
 	def subscribed
 		stream_from "todos"
   	ConnectedList.add(current_user)
-  	debugger
+#  	debugger
   	
 	end
 

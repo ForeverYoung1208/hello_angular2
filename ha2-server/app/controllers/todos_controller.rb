@@ -53,6 +53,7 @@ class TodosController < ApplicationController
 
   def subscribe_to_ws
     if cookies.signed[:user_name] = params[:channelUser]
+
       head :ok
     else
       head :unprocessable_entity
