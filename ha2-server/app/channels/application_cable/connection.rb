@@ -13,7 +13,7 @@ module ApplicationCable
     private
 
     def find_user
-      cookies.signed[:user_name]
+      cookies[:user_name]
 
 #      debugger
     end

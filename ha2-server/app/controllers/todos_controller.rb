@@ -52,12 +52,16 @@ class TodosController < ApplicationController
   end
 
   def subscribe_to_ws
-    if cookies.signed[:user_name] = params[:channelUser]
+    debugger    
+    cookies.permanent[:user_name] = params[:channelUser]
+    debugger   
 
-      head :ok
-    else
-      head :unprocessable_entity
-    end
+    # if cookies.signed[:user_name] = params[:channelUser]
+
+    #   head :ok
+    # else
+    #   head :unprocessable_entity
+    # end
   end
 
   private
