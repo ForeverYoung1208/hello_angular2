@@ -6,6 +6,8 @@ class TodosController < ApplicationController
     @todos = Todo.all
 
     render json: @todos
+
+
   end
 
   # GET /todos/1
@@ -52,9 +54,12 @@ class TodosController < ApplicationController
   end
 
   def subscribe_to_ws
-    debugger    
-    cookies.permanent[:user_name] = params[:channelUser]
-    debugger   
+
+    cookies.signed[:user_id] = {
+      value: 2,
+      expires: 1.year.from_now,
+      domain: :all
+    }
 
     # if cookies.signed[:user_name] = params[:channelUser]
 

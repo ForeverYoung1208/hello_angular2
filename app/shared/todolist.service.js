@@ -141,7 +141,7 @@ var TodoListACService = (function () {
     function TodoListACService(http) {
         this.http = http;
         this.apiUrl = myconfig_1.MyConfig.apiUrl;
-        this.cableUrl = myconfig_1.MyConfig.apiUrl + myconfig_1.MyConfig.cableSuffix;
+        this.cableUrl = myconfig_1.MyConfig.cableAddress;
         this.channel = myconfig_1.MyConfig.channel;
         this.ActionCable = require('actioncable');
         this.cable = this.ActionCable.createConsumer(this.cableUrl);

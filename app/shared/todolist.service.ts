@@ -142,7 +142,7 @@ export class TodoListWSService extends ChannelWebsocketService{
 @Injectable()
 export class TodoListACService{
   private apiUrl:string = MyConfig.apiUrl;  
-  private cableUrl:string = MyConfig.apiUrl+MyConfig.cableSuffix;
+  private cableUrl:string = MyConfig.cableAddress;
   private channel:string = MyConfig.channel;
   private cable:any;
   private subscription:any;
