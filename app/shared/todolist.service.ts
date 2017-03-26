@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { WebSocketService, ChannelWebsocketService } from './websocket.service'
 
 
-import { Http, Response, Headers, URLSearchParams } from '@angular/http';
+import { Http, Response, Headers, URLSearchParams, RequestOptions } from '@angular/http';
 import { todoListData, todoListData2 } from './todolistdata';
 import { TodoItem } from './todoitem';
 import { MyConfig } from './myconfig'
@@ -161,8 +161,11 @@ export class TodoListACService{
 
     let params: URLSearchParams = new URLSearchParams();
     params.set('channelUser', channelUser);
+
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers, search: params, withCredentials: true  });
     
-    this.http.get(this.apiUrl+'/subscribe_to_ws', {  search: params } ).subscribe(
+    this.http.get(this.apiUrl+'/subscribe_to_ws', options ).subscribe(
       result => { 
                   console.log( 'result' )
                   console.log( result )

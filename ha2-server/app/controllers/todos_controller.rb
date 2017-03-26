@@ -55,9 +55,9 @@ class TodosController < ApplicationController
 
   def subscribe_to_ws
 
-    cookies.signed[:user_id] = {
-      value: 2,
-      expires: 1.year.from_now,
+    cookies[:user_name] = {
+      value: params[:channelUser],
+#      expires: 1.year.from_now,
       domain: :all
     }
 

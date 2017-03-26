@@ -151,7 +151,9 @@ var TodoListACService = (function () {
         if (channel === void 0) { channel = this.channel; }
         var params = new http_1.URLSearchParams();
         params.set('channelUser', channelUser);
-        this.http.get(this.apiUrl + '/subscribe_to_ws', { search: params }).subscribe(function (result) {
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers, search: params, withCredentials: true });
+        this.http.get(this.apiUrl + '/subscribe_to_ws', options).subscribe(function (result) {
             console.log('result');
             console.log(result);
             _this.subscription = _this.cable.subscriptions.create({
